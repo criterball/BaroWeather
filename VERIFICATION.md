@@ -52,8 +52,9 @@ Date: 2026-11-27
 | --- | --- |
 | 24 h sparkline | Density-aware 16 dp top / 8 dp bottom clearance replaced the fixed 8 px padding; `layout_height` raised from 90 dp to 104 dp (device bounds `[39,984][651,1128]`) |
 | Sparkline top guide | Screenshot pixel check: warm high-threshold guide moved from row 20 to row 32 inside the card; accent line moved from row 74 to row 84 |
+| Pressure gauge | Gauge geometry now reserves 20 dp top / 26 dp bottom and uses a 160 dp view height; screenshot pixel check: green arc starts at row 18 instead of row 0 |
 | Long-range chart | Plot top moved from 34 dp to 42 dp and unit label from 20 dp to 24 dp, giving the landscape chart extra room above the bars |
-| Visual rationale | Fixes the reported obscured top edge without touching pressure data or thresholds |
+| Visual rationale | Fixes the obscured top edges without touching pressure data or thresholds |
 
 ## Publication checks
 

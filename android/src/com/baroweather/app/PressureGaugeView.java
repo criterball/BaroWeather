@@ -88,14 +88,18 @@ public final class PressureGaugeView extends View {
         if (w <= 0 || h <= 0) {
             return;
         }
-        float inset = Math.max(12f, w * 0.06f);
-        float diameter = Math.min(w - inset * 2f, (h - 34f) * 2f);
+        float sideInset = Math.max(dp(12), w * 0.06f);
+        float topInset = dp(20);
+        float bottomInset = dp(26);
+        float diameter = Math.min(w - sideInset * 2f,
+                (h - topInset - bottomInset) * 2f);
         float cx = w / 2f;
-        float cy = h - 30f;
+        float cy = h - bottomInset;
         arcRect.set(cx - diameter / 2f, cy - diameter / 2f,
                 cx + diameter / 2f, cy + diameter / 2f);
 
-        arcPaint.setStrokeWidth(Math.max(8f, diameter * 0.07f));
+        // Keep the full stroke of the green/normal top arc inside the view.
+        arcPaint.setStrokeWidth(Math.max(dp(8), diameter * 0.07f));
         arcPaint.setColor(colors.alert);
         canvas.drawArc(arcRect, 180f, angleFor(lowHpa), false, arcPaint);
         arcPaint.setColor(colors.ok);
@@ -117,8 +121,8 @@ public final class PressureGaugeView extends View {
         canvas.drawCircle(cx, cy, Math.max(4f, diameter * 0.035f), needlePaint);
 
         labelPaint.setTextSize(Math.max(10f, h * 0.075f));
-        canvas.drawText("980", arcRect.left + 12f, cy + 14f, labelPaint);
-        canvas.drawText("1045", arcRect.right - 12f, cy + 14f, labelPaint);
+        canvas.drawText("980", arcRect.left + dp(12), cy + dp(14), labelPaint);
+        canvas.drawText("1045", arcRect.right - dp(12), cy + dp(14), labelPaint);
         canvas.drawText(String.format(java.util.Locale.US, "%.0f hPa", shownPressure),
                 cx, cy - diameter * 0.16f, labelPaint);
     }
@@ -129,5 +133,9 @@ public final class PressureGaugeView extends View {
 
     private static float clamp(float value, float min, float max) {
         return Math.max(min, Math.min(max, value));
+    }
+
+    private int dp(int value) {
+        return Math.round(value * getResources().getDisplayMetrics().density);
     }
 }

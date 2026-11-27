@@ -34,7 +34,7 @@
     </LinearLayout>
 
     <com.baroweather.app.PressureGaugeView android:id="@+id/gauge"
-        android:layout_width="match_parent" android:layout_height="150dp"
+        android:layout_width="match_parent" android:layout_height="160dp"
         android:layout_marginTop="6dp" />
 
     <com.baroweather.app.SparklineView android:id="@+id/sparkline"

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:background="?attr/bwSurface"
+    android:layout_marginBottom="12dp">
+
+    <TextView style="@style/CardTitle" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:text="@string/pressure_story_title"
+        android:textColor="?attr/bwAccent" />
+
+    <TextView android:id="@+id/story_text" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:text="@string/loading"
+        android:textSize="14sp" android:lineSpacingExtra="2dp"
+        android:textColor="?attr/bwTextPrimary" />
+
+    <Button android:id="@+id/button_symptom_log" android:layout_width="match_parent"
+        android:layout_height="40dp" android:layout_marginTop="8dp"
+        android:text="@string/symptom_add" android:textSize="13sp"
+        android:textColor="?attr/bwAccent" android:background="@drawable/bg_chip" />
+</LinearLayout>

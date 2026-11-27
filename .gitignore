@@ -1,0 +1,24 @@
+# Local signing material — never publish the keystore.
+*.jks
+*.keystore
+android/debug.jks
+
+# Generated/intermediate build output.
+android/build/
+android/jniLibs/
+core/target/
+*.flata
+*.dex
+*.class
+*.idsig
+
+# Keep only the current signed release APK in the public repo.
+dist/android/*.apk
+!dist/android/baroweather-0.4.0.apk
+
+# OS/editor noise.
+Thumbs.db
+Desktop.ini
+*.tmp
+*.bak
+*~

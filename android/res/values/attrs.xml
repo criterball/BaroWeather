@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="bwBackground" format="color" />
+    <attr name="bwSurface" format="color" />
+    <attr name="bwSurfaceRaised" format="color" />
+    <attr name="bwDivider" format="color" />
+    <attr name="bwTextPrimary" format="color" />
+    <attr name="bwTextSecondary" format="color" />
+    <attr name="bwAccent" format="color" />
+    <attr name="bwWarm" format="color" />
+    <attr name="bwAlert" format="color" />
+    <attr name="bwAlertDeep" format="color" />
+    <attr name="bwOk" format="color" />
+</resources>

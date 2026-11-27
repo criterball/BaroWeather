@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/bg</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="bwBackground">@color/bg</item>
+        <item name="bwSurface">@color/surface</item>
+        <item name="bwSurfaceRaised">@color/surface_raised</item>
+        <item name="bwDivider">@color/divider</item>
+        <item name="bwTextPrimary">@color/text_primary</item>
+        <item name="bwTextSecondary">@color/text_secondary</item>
+        <item name="bwAccent">@color/accent</item>
+        <item name="bwWarm">@color/warm</item>
+        <item name="bwAlert">@color/alert</item>
+        <item name="bwAlertDeep">@color/alert_deep</item>
+        <item name="bwOk">@color/ok</item>
+    </style>
+
+    <style name="AppThemeLight" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/light_bg</item>
+        <item name="android:colorAccent">@color/light_accent</item>
+        <item name="android:textColorPrimary">@color/light_text_primary</item>
+        <item name="android:textColorSecondary">@color/light_text_secondary</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="bwBackground">@color/light_bg</item>
+        <item name="bwSurface">@color/light_surface</item>
+        <item name="bwSurfaceRaised">@color/light_surface_raised</item>
+        <item name="bwDivider">@color/light_divider</item>
+        <item name="bwTextPrimary">@color/light_text_primary</item>
+        <item name="bwTextSecondary">@color/light_text_secondary</item>
+        <item name="bwAccent">@color/light_accent</item>
+        <item name="bwWarm">@color/warm</item>
+        <item name="bwAlert">@color/light_alert</item>
+        <item name="bwAlertDeep">@color/alert_deep</item>
+        <item name="bwOk">@color/ok</item>
+    </style>
+
+    <!-- Maximum contrast: pure black, white text, yellow highlights. -->
+    <style name="AppThemeContrastDark" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:windowBackground">#000000</item>
+        <item name="android:colorAccent">#FFE082</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:textColorSecondary">#E0E0E0</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="bwBackground">#000000</item>
+        <item name="bwSurface">#0A0A0A</item>
+        <item name="bwSurfaceRaised">#1C1C1C</item>
+        <item name="bwDivider">#FFFFFF</item>
+        <item name="bwTextPrimary">#FFFFFF</item>
+        <item name="bwTextSecondary">#E0E0E0</item>
+        <item name="bwAccent">#FFE082</item>
+        <item name="bwWarm">#FFD180</item>
+        <item name="bwAlert">#C62828</item>
+        <item name="bwAlertDeep">#7F0000</item>
+        <item name="bwOk">#69F0AE</item>
+    </style>
+
+    <!-- Maximum contrast: white background, black text, deep blue links. -->
+    <style name="AppThemeContrastLight" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">#FFFFFF</item>
+        <item name="android:colorAccent">#0000EE</item>
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:textColorSecondary">#212121</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="bwBackground">#FFFFFF</item>
+        <item name="bwSurface">#FFFFFF</item>
+        <item name="bwSurfaceRaised">#EFEFEF</item>
+        <item name="bwDivider">#000000</item>
+        <item name="bwTextPrimary">#000000</item>
+        <item name="bwTextSecondary">#212121</item>
+        <item name="bwAccent">#0000EE</item>
+        <item name="bwWarm">#7A3E00</item>
+        <item name="bwAlert">#B00020</item>
+        <item name="bwAlertDeep">#7F0000</item>
+        <item name="bwOk">#005B2B</item>
+    </style>
+
+    <style name="CardTitle">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:padding">4dp</item>
+    </style>
+
+    <style name="ChipText">
+        <item name="android:textSize">12sp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:background">@drawable/bg_chip</item>
+        <item name="android:minHeight">32dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+</resources>

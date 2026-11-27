@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="96dp" android:layout_height="wrap_content"
+    android:orientation="vertical" android:gravity="center_horizontal"
+    android:background="@drawable/bg_card" android:layout_marginRight="6dp"
+    android:minHeight="150dp" android:padding="8dp">
+
+    <TextView android:id="@+id/hour_time" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:textSize="13sp"
+        android:textStyle="bold" android:textColor="?attr/bwTextPrimary" />
+
+    <com.baroweather.app.ConditionIconView
+        android:id="@+id/hour_icon" android:layout_width="40dp" android:layout_height="40dp"
+        android:layout_marginTop="4dp" />
+
+    <TextView android:id="@+id/hour_temp" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:textSize="17sp"
+        android:textColor="?attr/bwTextPrimary" />
+
+    <TextView android:id="@+id/hour_rain" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:textSize="12sp"
+        android:textColor="?attr/bwAccent" />
+
+    <TextView android:id="@+id/hour_pressure" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:textSize="12sp"
+        android:textColor="?attr/bwTextSecondary" />
+
+    <TextView android:id="@+id/hour_detail" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:textSize="11sp"
+        android:gravity="center" android:visibility="gone"
+        android:textColor="?attr/bwTextSecondary" />
+</LinearLayout>

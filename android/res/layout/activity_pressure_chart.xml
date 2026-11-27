@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="?attr/bwBackground" android:fillViewport="true">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="12dp">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <TextView style="@style/CardTitle" android:layout_width="0dp"
+                android:layout_height="wrap_content" android:layout_weight="1"
+                android:text="@string/pressure_history" android:textColor="?attr/bwAccent" />
+            <Button android:id="@+id/button_symptom_log" android:layout_width="wrap_content"
+                android:layout_height="40dp" android:text="@string/symptom_add"
+                android:textSize="12sp" android:textColor="?attr/bwAccent"
+                android:background="@drawable/bg_chip" android:layout_marginRight="6dp" />
+            <Button android:id="@+id/button_export_png" android:layout_width="wrap_content"
+                android:layout_height="40dp" android:text="@string/export_png"
+                android:textSize="12sp" android:textColor="?attr/bwAccent"
+                android:background="@drawable/bg_chip" android:layout_marginRight="6dp" />
+            <Button android:id="@+id/button_export_csv" android:layout_width="wrap_content"
+                android:layout_height="40dp" android:text="@string/export_csv"
+                android:textSize="12sp" android:textColor="?attr/bwAccent"
+                android:background="@drawable/bg_chip" android:layout_marginRight="6dp" />
+            <Button android:id="@+id/button_done" android:layout_width="wrap_content"
+                android:layout_height="40dp" android:text="@string/done"
+                android:textColor="?attr/bwTextPrimary" android:background="@drawable/bg_chip" />
+        </LinearLayout>
+
+        <TextView android:id="@+id/chart_place" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/default_place"
+            android:textSize="16sp" android:textColor="?attr/bwTextPrimary"
+            android:textStyle="bold" android:maxLines="1" android:ellipsize="end" />
+
+        <TextView android:id="@+id/chart_status" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/chart_loading"
+            android:textSize="13sp" android:textColor="?attr/bwTextSecondary" />
+
+        <HorizontalScrollView android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:scrollbars="none"
+            android:layout_marginTop="8dp">
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button android:id="@+id/button_hourly" android:layout_width="wrap_content"
+                    android:layout_height="40dp" android:text="@string/hourly_bars"
+                    android:textSize="13sp" android:textColor="?attr/bwTextPrimary"
+                    android:background="@drawable/bg_chip" />
+                <Button android:id="@+id/button_daily" android:layout_width="wrap_content"
+                    android:layout_height="40dp" android:text="@string/daily_bars"
+                    android:textSize="13sp" android:textColor="?attr/bwTextPrimary"
+                    android:background="@drawable/bg_chip" android:layout_marginLeft="6dp" />
+                <Button android:id="@+id/button_7d" android:layout_width="wrap_content"
+                    android:layout_height="40dp" android:text="@string/range_7d"
+                    android:textSize="13sp" android:textColor="?attr/bwTextPrimary"
+                    android:background="@drawable/bg_chip" android:layout_marginLeft="12dp" />
+                <Button android:id="@+id/button_30d" android:layout_width="wrap_content"
+                    android:layout_height="40dp" android:text="@string/range_30d"
+                    android:textSize="13sp" android:textColor="?attr/bwTextPrimary"
+                    android:background="@drawable/bg_chip" android:layout_marginLeft="6dp" />
+                <Button android:id="@+id/button_all" android:layout_width="wrap_content"
+                    android:layout_height="40dp" android:text="@string/range_all"
+                    android:textSize="13sp" android:textColor="?attr/bwTextPrimary"
+                    android:background="@drawable/bg_chip" android:layout_marginLeft="6dp" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <com.baroweather.app.PressureHistogramView android:id="@+id/histogram"
+            android:layout_width="match_parent" android:layout_height="340dp"
+            android:layout_marginTop="10dp" android:background="?attr/bwSurface"
+            android:contentDescription="@string/pressure_history_hint" />
+
+        <TextView style="@style/CardTitle" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/details_title"
+            android:textColor="?attr/bwAccent" android:layout_marginTop="12dp" />
+
+        <GridLayout android:id="@+id/chart_stats" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:columnCount="2" />
+
+        <TextView android:id="@+id/chart_legend" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/chart_legend_symptoms"
+            android:textSize="12sp" android:textColor="?attr/bwTextSecondary"
+            android:layout_marginTop="10dp" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/chart_disclaimer" android:textSize="11sp"
+            android:textColor="?attr/bwTextSecondary" android:layout_marginTop="4dp" />
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,15 @@
+[package]
+name = "baroweather-core"
+version = "0.1.0"
+edition = "2021"
+description = "Cross-platform pressure and weather rules for BaroWeather"
+
+[lib]
+name = "baroweather_core"
+crate-type = ["rlib", "staticlib"]
+
+[profile.release]
+opt-level = "s"
+lto = true
+strip = true
+panic = "abort"

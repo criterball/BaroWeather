@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="?attr/bwBackground" android:fillViewport="true">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="16dp">
+
+        <TextView style="@style/CardTitle" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/alerts_title"
+            android:textColor="?attr/bwAccent" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/low_threshold" android:textColor="?attr/bwTextSecondary" android:textSize="13sp" />
+        <EditText android:id="@+id/edit_low" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:inputType="numberDecimal"
+            android:textColor="?attr/bwTextPrimary" android:textSize="16sp" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/high_threshold" android:textColor="?attr/bwTextSecondary" android:textSize="13sp" />
+        <EditText android:id="@+id/edit_high" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:inputType="numberDecimal"
+            android:textColor="?attr/bwTextPrimary" android:textSize="16sp" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/drop3_threshold" android:textColor="?attr/bwTextSecondary" android:textSize="13sp" />
+        <EditText android:id="@+id/edit_drop3" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:inputType="numberDecimal"
+            android:textColor="?attr/bwTextPrimary" android:textSize="16sp" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/change12_threshold" android:textColor="?attr/bwTextSecondary" android:textSize="13sp" />
+        <EditText android:id="@+id/edit_change12" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:inputType="numberDecimal"
+            android:textColor="?attr/bwTextPrimary" android:textSize="16sp" />
+
+        <CheckBox android:id="@+id/check_banner" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/enable_banner"
+            android:textColor="?attr/bwTextPrimary" android:textSize="15sp"
+            android:layout_marginTop="8dp" />
+
+        <CheckBox android:id="@+id/check_notifications" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/enable_notifications"
+            android:textColor="?attr/bwTextPrimary" android:textSize="15sp" />
+
+        <TextView android:id="@+id/notification_hint" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/notification_permission_needed"
+            android:textColor="?attr/bwWarm" android:textSize="12sp" android:visibility="gone" />
+
+        <TextView style="@style/CardTitle" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/saved_places"
+            android:textColor="?attr/bwAccent" android:layout_marginTop="16dp" />
+
+        <LinearLayout android:id="@+id/saved_places_settings" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="vertical" />
+
+        <Button android:id="@+id/button_save_current_place" android:layout_width="match_parent"
+            android:layout_height="44dp" android:text="@string/save_current_place"
+            android:textColor="?attr/bwAccent" android:background="@drawable/bg_chip"
+            android:layout_marginTop="6dp" />
+
+        <TextView style="@style/CardTitle" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/units_title"
+            android:textColor="?attr/bwAccent" android:layout_marginTop="16dp" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/temp_unit" android:textColor="?attr/bwTextSecondary" android:textSize="13sp" />
+        <Spinner android:id="@+id/spinner_temp" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:entries="@array/temp_units" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/wind_unit" android:textColor="?attr/bwTextSecondary" android:textSize="13sp" />
+        <Spinner android:id="@+id/spinner_wind" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:entries="@array/wind_units" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/pressure_unit" android:textColor="?attr/bwTextSecondary" android:textSize="13sp" />
+        <Spinner android:id="@+id/spinner_pressure" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:entries="@array/pressure_units" />
+
+        <TextView style="@style/CardTitle" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/accessibility_title"
+            android:textColor="?attr/bwAccent" android:layout_marginTop="16dp" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/theme_label" android:textColor="?attr/bwTextSecondary" android:textSize="13sp" />
+        <Spinner android:id="@+id/spinner_theme" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:entries="@array/theme_options" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/font_scale_label" android:textColor="?attr/bwTextSecondary" android:textSize="13sp" />
+        <Spinner android:id="@+id/spinner_font_scale" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:entries="@array/font_scale_options" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/orientation_label" android:textColor="?attr/bwTextSecondary" android:textSize="13sp" />
+        <Spinner android:id="@+id/spinner_orientation" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:entries="@array/orientation_options" />
+
+        <CheckBox android:id="@+id/check_chart_patterns" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/chart_patterns"
+            android:textColor="?attr/bwTextPrimary" android:textSize="15sp"
+            android:layout_marginTop="8dp" />
+
+        <CheckBox android:id="@+id/check_reduce_motion" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/reduce_motion"
+            android:textColor="?attr/bwTextPrimary" android:textSize="15sp" />
+
+        <TextView android:id="@+id/text_core" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="12sp"
+            android:textColor="?attr/bwTextSecondary" android:layout_marginTop="12dp" />
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:layout_marginTop="18dp">
+            <Button android:id="@+id/button_save" android:layout_width="0dp"
+                android:layout_height="48dp" android:layout_weight="1"
+                android:text="@string/save" android:textColor="?attr/bwTextPrimary"
+                android:background="@drawable/bg_chip" />
+            <Button android:id="@+id/button_cancel" android:layout_width="0dp"
+                android:layout_height="48dp" android:layout_weight="1"
+                android:text="@string/cancel" android:textColor="?attr/bwTextPrimary"
+                android:background="@drawable/bg_chip" android:layout_marginLeft="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

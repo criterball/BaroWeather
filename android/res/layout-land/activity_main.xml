@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="?attr/bwBackground">
+
+    <com.baroweather.app.AlertBannerView
+        android:id="@+id/banner"
+        android:layout_width="match_parent" android:layout_height="wrap_content" />
+
+    <ProgressBar android:id="@+id/refresh_progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent" android:layout_height="3dp"
+        android:max="100" android:progress="0" android:visibility="gone" />
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="0dp"
+        android:layout_weight="1" android:orientation="horizontal">
+
+        <ScrollView android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="42" android:fillViewport="true">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="10dp">
+                <include layout="@layout/toolbar" />
+                <include layout="@layout/saved_places_strip" />
+                <include layout="@layout/hero_card" />
+                <include layout="@layout/pressure_card" />
+                <include layout="@layout/story_card" />
+            </LinearLayout>
+        </ScrollView>
+
+        <View android:layout_width="1dp" android:layout_height="match_parent"
+            android:background="?attr/bwDivider" />
+
+        <ScrollView android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="58" android:fillViewport="true">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="10dp">
+                <include layout="@layout/hourly_section" />
+                <include layout="@layout/daily_section" />
+                <include layout="@layout/details_section" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

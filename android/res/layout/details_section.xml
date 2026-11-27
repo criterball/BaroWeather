@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView style="@style/CardTitle" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:text="@string/details_title"
+        android:textColor="?attr/bwAccent" />
+
+    <GridLayout android:id="@+id/details_grid" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:columnCount="@integer/detail_columns"
+        android:layout_marginBottom="12dp" />
+
+    <TextView android:id="@+id/last_updated" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:textSize="12sp"
+        android:textColor="?attr/bwTextSecondary" />
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/source" android:textSize="11sp"
+        android:textColor="?attr/bwTextSecondary" android:layout_marginTop="2dp" />
+</LinearLayout>

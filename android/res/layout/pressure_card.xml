@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:background="@drawable/bg_card"
+    android:layout_marginBottom="12dp">
+
+    <TextView style="@style/CardTitle" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:text="@string/pressure_card_title"
+        android:textColor="?attr/bwAccent" />
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_vertical">
+
+        <TextView android:id="@+id/pressure_value" android:layout_width="0dp"
+            android:layout_height="wrap_content" android:layout_weight="1"
+            android:text="@string/unknown" android:textSize="34sp"
+            android:textStyle="bold" android:textColor="?attr/bwTextPrimary" />
+
+        <TextView android:id="@+id/pressure_trend" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:textSize="20sp"
+            android:textColor="?attr/bwAccent" />
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:layout_marginTop="4dp">
+
+        <TextView android:id="@+id/delta3_chip" style="@style/ChipText"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginRight="6dp" android:textColor="?attr/bwTextSecondary" />
+
+        <TextView android:id="@+id/delta12_chip" style="@style/ChipText"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="?attr/bwTextSecondary" />
+    </LinearLayout>
+
+    <com.baroweather.app.PressureGaugeView android:id="@+id/gauge"
+        android:layout_width="match_parent" android:layout_height="150dp"
+        android:layout_marginTop="6dp" />
+
+    <com.baroweather.app.SparklineView android:id="@+id/sparkline"
+        android:layout_width="match_parent" android:layout_height="98dp"
+        android:background="@drawable/bg_chip" android:layout_marginTop="4dp" />
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:layout_marginTop="8dp">
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="@string/pressure_now" android:textSize="12sp"
+            android:textColor="?attr/bwTextSecondary" />
+        <TextView android:id="@+id/p_now" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:textSize="13sp"
+            android:textColor="?attr/bwTextPrimary" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="@string/pressure_3h" android:textSize="12sp"
+            android:textColor="?attr/bwTextSecondary" />
+        <TextView android:id="@+id/p_3h" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:textSize="13sp"
+            android:textColor="?attr/bwTextPrimary" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="@string/pressure_12h" android:textSize="12sp"
+            android:textColor="?attr/bwTextSecondary" />
+        <TextView android:id="@+id/p_12h" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:textSize="13sp"
+            android:textColor="?attr/bwTextPrimary" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="@string/pressure_24h_min" android:textSize="12sp"
+            android:textColor="?attr/bwTextSecondary" />
+        <TextView android:id="@+id/p_min24" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:textSize="13sp"
+            android:textColor="?attr/bwTextPrimary" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="@string/pressure_24h_max" android:textSize="12sp"
+            android:textColor="?attr/bwTextSecondary" />
+        <TextView android:id="@+id/p_max24" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:textSize="13sp"
+            android:textColor="?attr/bwTextPrimary" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="@string/pressure_next12" android:textSize="12sp"
+            android:textColor="?attr/bwTextSecondary" />
+        <TextView android:id="@+id/p_next12" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:textSize="13sp"
+            android:textColor="?attr/bwTextPrimary" />
+    </LinearLayout>
+
+    <TextView android:id="@+id/pressure_status" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_marginTop="8dp"
+        android:textSize="13sp" android:textColor="?attr/bwAccent" />
+</LinearLayout>

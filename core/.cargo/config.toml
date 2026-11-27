@@ -1,0 +1,11 @@
+[target.aarch64-linux-android]
+ar = "D:/opencode_home_win/tools_android/sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/bin/llvm-ar.exe"
+linker = "D:/opencode_home_win/tools_android/sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/bin/aarch64-linux-android27-clang.cmd"
+
+[target.armv7-linux-androideabi]
+ar = "D:/opencode_home_win/tools_android/sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/bin/llvm-ar.exe"
+linker = "D:/opencode_home_win/tools_android/sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/bin/armv7a-linux-androideabi27-clang.cmd"
+
+[target.x86_64-linux-android]
+ar = "D:/opencode_home_win/tools_android/sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/bin/llvm-ar.exe"
+linker = "D:/opencode_home_win/tools_android/sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/bin/x86_64-linux-android27-clang.cmd"

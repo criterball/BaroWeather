@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:background="@drawable/bg_card"
+    android:layout_marginBottom="12dp">
+
+    <TextView android:id="@+id/place_name" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:text="@string/default_place"
+        android:textSize="18sp" android:textStyle="bold" android:textColor="?attr/bwTextPrimary" />
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:layout_marginTop="4dp">
+
+        <TextView android:id="@+id/temperature" android:layout_width="0dp"
+            android:layout_height="wrap_content" android:layout_weight="1"
+            android:text="@string/unknown" android:textSize="56sp"
+            android:textColor="?attr/bwTextPrimary" />
+
+        <com.baroweather.app.ConditionIconView android:id="@+id/hero_icon"
+            android:layout_width="64dp" android:layout_height="64dp" />
+
+        <TextView android:id="@+id/condition" android:layout_width="120dp"
+            android:layout_height="wrap_content" android:text="@string/unknown"
+            android:textSize="15sp" android:textColor="?attr/bwTextSecondary"
+            android:maxLines="3" />
+    </LinearLayout>
+
+    <TextView android:id="@+id/feels_like" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:textColor="?attr/bwTextSecondary"
+        android:textSize="14sp" />
+
+    <TextView android:id="@+id/high_low" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:textColor="?attr/bwTextSecondary"
+        android:textSize="14sp" />
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:layout_marginTop="8dp">
+
+        <TextView android:id="@+id/rain_chip" style="@style/ChipText"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginRight="6dp" android:textColor="?attr/bwAccent" />
+
+        <TextView android:id="@+id/uv_chip" style="@style/ChipText"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginRight="6dp" android:textColor="?attr/bwWarm" />
+
+        <TextView android:id="@+id/wind_chip" style="@style/ChipText"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="?attr/bwTextPrimary" />
+    </LinearLayout>
+</LinearLayout>

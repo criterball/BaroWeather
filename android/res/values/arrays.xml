@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="temp_units">
+        <item>Celsius (°C)</item>
+        <item>Fahrenheit (°F)</item>
+    </string-array>
+    <string-array name="wind_units">
+        <item>km/h</item>
+        <item>mph</item>
+        <item>m/s</item>
+    </string-array>
+    <string-array name="pressure_units">
+        <item>hPa</item>
+        <item>inHg</item>
+        <item>mmHg</item>
+    </string-array>
+    <string-array name="theme_options">
+        <item>Dark</item>
+        <item>Light</item>
+        <item>High contrast dark</item>
+        <item>High contrast light</item>
+    </string-array>
+    <string-array name="font_scale_options">
+        <item>System text size</item>
+        <item>100%</item>
+        <item>125%</item>
+        <item>150%</item>
+        <item>175%</item>
+        <item>200%</item>
+    </string-array>
+    <string-array name="orientation_options">
+        <item>Follow device</item>
+        <item>Portrait only</item>
+        <item>Landscape only</item>
+    </string-array>
+</resources>

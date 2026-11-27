@@ -1,0 +1,51 @@
+BAROWEATHER - GOALS
+===================
+
+PRIMARY
+-------
+1. Show barometric pressure prominently with low/very-high/incoming warnings in
+   a red banner at the top of the screen.
+2. Be a complete, attractive weather app: current conditions, hourly, 7-day,
+   details, settings, saved places.
+3. Work on small phones and tablets, Android 5.0+.
+4. Put cross-platform logic in Rust; use C++ only if Rust cannot bridge cleanly.
+5. Keep the Android APK dependency-free and sideloadable with local SDK tools.
+
+PRESSURE
+--------
+6. Use sea-level pressure from Open-Meteo, show surface pressure as secondary.
+7. Detect current low (<1005 hPa default), current very high (>1030 hPa), and
+   significant 3 h / 12 h falls or rises.
+8. Make thresholds and trend sensitivity configurable.
+9. Warn before low pressure arrives using the next-12-hour forecast.
+10. Include a clear, visible non-medical-advice disclaimer.
+
+GUI
+---
+11. Red top banner with icon, title, value, window, and WHY? button.
+12. Expanded pressure card with gauge, trend chips and 24 h sparkline.
+13. Hero current-conditions card, 24 h hourly strip, 7-day forecast, details.
+14. Custom canvas weather icons and gauges; no image assets.
+15. Phone portrait, phone landscape, tablet portrait, tablet landscape layouts.
+16. Dark and light themes, high contrast, system font scaling, TalkBack labels.
+
+DATA / PLATFORM
+---------------
+17. Open-Meteo forecast + geocoding over HTTPS, no API key.
+18. Location permission with manual city fallback.
+19. Cache last forecast for offline viewing with timestamp.
+20. Java fallback when the Rust native library is unavailable.
+
+ADDED IN v0.4
+-------------
+- Plain-language pressure story and private symptom log.
+- Quiet incoming-pressure notifications and a cached home-screen widget.
+- Multiple saved places, colour-blind-safe chart patterns and reduce motion.
+- PNG/CSV pressure history export via the platform share sheet.
+
+OUT OF SCOPE FOR v0.1
+---------------------
+- Medical diagnosis or treatment advice.
+- Ads, analytics, billing, Play Services.
+- Weather radar maps and severe-weather government alert feeds.
+- Wear OS / automotive builds.

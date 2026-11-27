@@ -50,7 +50,7 @@
 | 6 | Colour-blind-safe chart patterns | Done, diagonal low / horizontal normal / vertical high + symptom dot |
 | 7 | Animated gauge needle with reduce-motion switch | Done, 250 ms animation snaps when reduce motion is on |
 | 8 | Pressure history export | Done, PNG of visible chart and CSV of full series + symptom notes via platform share sheet |
-| 9 | Landscape sparkline/chart top-edge clearance | Done, density-aware 8 dp sparkline padding, 98 dp sparkline height, 42 dp histogram plot top |
+| 9 | Landscape sparkline/chart top-edge clearance | Done, density-aware 16 dp top / 8 dp bottom sparkline padding, 104 dp sparkline height, 42 dp histogram plot top |
 
 ## Remaining / later
 

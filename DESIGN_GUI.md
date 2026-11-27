@@ -74,8 +74,8 @@ When pressure is stable the band collapses to a 28 dp cyan/green strip:
 - Semicircular gauge from 980 to 1045 hPa with coloured zones:
   low `<1005`, normal `1005–1030`, high `>1030`. Needle shows current value.
 - 24 h pressure sparkline with threshold lines drawn in. It has density-aware
-  8 dp top/bottom clearance and a 98 dp card height so high/low dots and the
-  line stroke are not clipped in landscape.
+  16 dp top and 8 dp bottom clearance and a 104 dp card height so high/low dots,
+  the high threshold guide and the line stroke are not clipped in landscape.
 - Six-row compact table: current, 3 h ago, 12 h ago, 24 h min, 24 h max,
   forecast min/max in next 12 h.
 - Status line: `Here now`, `Incoming in about 6 h`, or `Stable`.
@@ -245,9 +245,9 @@ wide labelled chart on the right.
 - 150 ms fade for banner appearance.
 - Gauge needle animates over 250 ms; the reduce-motion setting snaps it instead.
 - No parallax, no long transitions; refresh is a thin top progress line.
-- The 24 h sparkline keeps density-aware 8 dp clearance and the landscape chart
-  plot starts 42 dp from the top, avoiding top-edge clipping after the v0.4
-  spacing adjustment.
+- The 24 h sparkline keeps density-aware 16 dp top / 8 dp bottom clearance and
+  the landscape chart plot starts 42 dp from the top, avoiding top-edge clipping
+  after the v0.4 spacing adjustment.
 
 ## Empty/error states
 

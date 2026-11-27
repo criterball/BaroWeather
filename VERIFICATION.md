@@ -14,7 +14,7 @@ Date: 2026-11-27
 | APK contents | `classes.dex` plus `lib/{arm64-v8a,armeabi-v7a,x86_64}/libbaroweather_core.so` |
 | `apksigner verify` | v1 true, v2 true, v3 true |
 | Build/version | v0.4.0, versionCode 3, output `dist\android\baroweather-0.4.0.apk` |
-| APK size | 4,889,589 bytes (v0.3 was 4,864,648 bytes) |
+| APK size | 4,889,592 bytes (v0.3 was 4,864,648 bytes) |
 
 ## Device checks (Lenovo TB-X606F / `HPV2VPC2`, Android 10, 1200×1920)
 
@@ -50,9 +50,10 @@ Date: 2026-11-27
 
 | Check | Result |
 | --- | --- |
-| 24 h sparkline | Density-aware 8 dp clearance replaced the fixed 8 px padding; `layout_height` raised from 90 dp to 98 dp (device bounds `[39,984][651,1128]`) |
+| 24 h sparkline | Density-aware 16 dp top / 8 dp bottom clearance replaced the fixed 8 px padding; `layout_height` raised from 90 dp to 104 dp (device bounds `[39,984][651,1128]`) |
+| Sparkline top guide | Screenshot pixel check: warm high-threshold guide moved from row 20 to row 32 inside the card; accent line moved from row 74 to row 84 |
 | Long-range chart | Plot top moved from 34 dp to 42 dp and unit label from 20 dp to 24 dp, giving the landscape chart extra room above the bars |
-| Visual rationale | Fixes the reported 5–8 px obscured top edge without touching pressure data or thresholds |
+| Visual rationale | Fixes the reported obscured top edge without touching pressure data or thresholds |
 
 ## Publication checks
 

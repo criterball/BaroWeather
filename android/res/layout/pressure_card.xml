@@ -38,7 +38,7 @@
         android:layout_marginTop="6dp" />
 
     <com.baroweather.app.SparklineView android:id="@+id/sparkline"
-        android:layout_width="match_parent" android:layout_height="98dp"
+        android:layout_width="match_parent" android:layout_height="104dp"
         android:background="@drawable/bg_chip" android:layout_marginTop="4dp" />
 
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"

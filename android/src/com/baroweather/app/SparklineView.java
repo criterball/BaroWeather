@@ -71,21 +71,23 @@ public final class SparklineView extends View {
         if (max - min < 8f) {
             max = min + 8f;
         }
-        float pad = dp(8);
-        float usableH = h - pad * 2f;
-        float usableW = w - pad * 2f;
+        float sidePad = dp(8);
+        float topPad = dp(16);
+        float bottomPad = dp(8);
+        float usableH = h - topPad - bottomPad;
+        float usableW = w - sidePad * 2f;
 
         guidePaint.setColor(colors.alert);
-        drawGuide(canvas, lowHpa, min, max, pad, usableH, w);
+        drawGuide(canvas, lowHpa, min, max, topPad, usableH, w, sidePad);
         guidePaint.setColor(colors.warm);
-        drawGuide(canvas, highHpa, min, max, pad, usableH, w);
+        drawGuide(canvas, highHpa, min, max, topPad, usableH, w, sidePad);
 
         linePath.reset();
         int minIndex = 0;
         int maxIndex = 0;
         for (int i = 0; i < values.length; i++) {
-            float x = pad + usableW * i / (values.length - 1);
-            float y = pad + usableH * (1f - (values[i] - min) / (max - min));
+            float x = sidePad + usableW * i / (values.length - 1);
+            float y = topPad + usableH * (1f - (values[i] - min) / (max - min));
             if (i == 0) {
                 linePath.moveTo(x, y);
             } else {
@@ -101,27 +103,27 @@ public final class SparklineView extends View {
         canvas.drawPath(linePath, linePaint);
 
         dotPaint.setColor(colors.ok);
-        drawDot(canvas, values.length, minIndex, min, max, pad, usableW, usableH);
+        drawDot(canvas, values.length, minIndex, min, max, sidePad, topPad, usableW, usableH);
         dotPaint.setColor(colors.warm);
-        drawDot(canvas, values.length, maxIndex, min, max, pad, usableW, usableH);
+        drawDot(canvas, values.length, maxIndex, min, max, sidePad, topPad, usableW, usableH);
     }
 
     private void drawGuide(Canvas canvas, float level, float min, float max,
-            float pad, float usableH, float w) {
+            float topPad, float usableH, float w, float sidePad) {
         if (level < min || level > max) {
             return;
         }
-        float y = pad + usableH * (1f - (level - min) / (max - min));
-        canvas.drawLine(pad, y, w - pad, y, guidePaint);
+        float y = topPad + usableH * (1f - (level - min) / (max - min));
+        canvas.drawLine(sidePad, y, w - sidePad, y, guidePaint);
     }
 
     private void drawDot(Canvas canvas, int count, int index, float min, float max,
-            float pad, float usableW, float usableH) {
+            float sidePad, float topPad, float usableW, float usableH) {
         if (count < 2) {
             return;
         }
-        float x = pad + usableW * index / (count - 1);
-        float y = pad + usableH * (1f - (values[index] - min) / (max - min));
+        float x = sidePad + usableW * index / (count - 1);
+        float y = topPad + usableH * (1f - (values[index] - min) / (max - min));
         canvas.drawCircle(x, y, 4f, dotPaint);
     }
 

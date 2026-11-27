@@ -5,6 +5,10 @@ tablets. Its distinguishing feature is an expanded barometric-pressure warning
 system: low, falling, and very high pressure are called out in a red banner at
 the top of the screen so pressure-sensitive users can take precautions.
 
+![BaroWeather dashboard on Android tablet in landscape](docs/screenshots/home-dashboard.png)
+
+*Dashboard screenshot from the test tablet (Lenovo TB-X606F, Android 10).*
+
 Project folder: `D:\opencode_home_win\038_2026_11_27_BaroWeather`
 
 ## Status

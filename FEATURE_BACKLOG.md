@@ -63,6 +63,16 @@
 | 5 | Three new high-contrast themes | Done, blue, navy and matrix green alongside the four existing themes |
 | 6 | Version/APK bump | Done, v0.4.1 / versionCode 4, signed and device-verified |
 
+## v0.4.2 — complete
+
+| # | Feature | Status |
+| --- | --- | --- |
+| 1 | Dedicated starred-favorites page | Done, toolbar star launches `FavoritesActivity` with name/coordinate rows |
+| 2 | Star current place or add from search | Done, existing geocoder result is saved and starred without leaving the page |
+| 3 | Open a favorite | Done, returns name/lat/lon to `MainActivity`, switches place and refreshes |
+| 4 | Unstar/remove a favorite | Done, removes from starred list and dashboard chip strip |
+| 5 | Version/APK bump | Done, v0.4.2 / versionCode 5, signed and device-verified |
+
 ## Remaining / later
 
 | # | Feature | Notes |

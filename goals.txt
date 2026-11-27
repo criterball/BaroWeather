@@ -48,6 +48,10 @@ ADDED IN v0.4.1
 - Rain chance percentage and expected millimetres in forecast rows/details.
 - 110% text option, single-line large temperature, and blue/navy/matrix themes.
 
+ADDED IN v0.4.2
+---------------
+- Dedicated starred-favorites page with toolbar shortcut, search/current add, open and remove.
+
 OUT OF SCOPE FOR v0.1
 ---------------------
 - Medical diagnosis or treatment advice.

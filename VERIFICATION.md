@@ -13,8 +13,8 @@ Date: 2026-11-27
 | `javac` / `d8` | Passed, single `classes.dex` |
 | APK contents | `classes.dex` plus `lib/{arm64-v8a,armeabi-v7a,x86_64}/libbaroweather_core.so` |
 | `apksigner verify` | v1 true, v2 true, v3 true |
-| Build/version | v0.4.1, versionCode 4, output `dist\android\baroweather-0.4.1.apk` |
-| APK size | 4,893,686 bytes (v0.4.0 was 4,889,592 bytes) |
+| Build/version | v0.4.2, versionCode 5, output `dist\android\baroweather-0.4.2.apk` |
+| APK size | 4,898,005 bytes (v0.4.1 was 4,893,686 bytes) |
 
 ## Device checks (Lenovo TB-X606F / `HPV2VPC2`, Android 10, 1200×1920)
 
@@ -34,7 +34,7 @@ Date: 2026-11-27
 | Widget | `dumpsys package` lists `com.baroweather.app/.BaroWeatherWidget` with its provider metadata |
 | Widget/export provider | `dumpsys package` also lists `com.baroweather.app/.ExportFileProvider` |
 | Logcat | No FATAL EXCEPTION, ANR or AndroidRuntime crash during the full flow |
-| Installed version | `dumpsys package` reports versionName `0.4.1`, versionCode `4` |
+| Installed version | `dumpsys package` reports versionName `0.4.2`, versionCode `5` |
 
 ## Earlier v0.2/v0.3 checks retained
 
@@ -71,14 +71,26 @@ Date: 2026-11-27
 | Theme options | Dropdown verified all seven themes; Matrix green applied with black background pixel `(0,0,0)` and surface `(0,18,10)` |
 | Theme/font/orientation | Restored to Dark, System text size and Follow device after checks |
 
+## v0.4.2 starred-favorites checks
+
+| Check | Result |
+| --- | --- |
+| Toolbar shortcut | Star button opens `FavoritesActivity`; page title, hint and one starred row shown |
+| Existing favorite | `favorite_name` shows `Modbury North, South Australia, Australia` with coordinates `-34.8285, 138.6739` |
+| Open a favorite | Tapping the row's location button returned to `MainActivity` with `MODBURY NORTH, SOUTH AUSTRALIA, AUSTRALIA` and refreshed the dashboard |
+| Add from search | `ADD FROM SEARCH` opened the geocoder, `Adelaide` resolved, and the chosen result was added as a second starred row |
+| Unstar/remove | Removing the newly added row restored the single original favorite; the dashboard chip strip also follows the star flag |
+| Screenshot | `docs/screenshots/favorites.png` captured from the test tablet and linked from README |
+| Logcat | No FATAL EXCEPTION or ANR during page open, favorite selection, search add or remove |
+
 ## Publication checks
 
 | Check | Result |
 | --- | --- |
-| Final backup | `D:\opencode_home_win\backups\BaroWeather\2026-11-27_v0.4.1_reading_rain\` with source ZIP, signed APK and SHA-256 record |
+| Final backup | `D:\opencode_home_win\backups\BaroWeather\2026-11-27_v0.4.2_favorites\` with source ZIP, signed APK and SHA-256 record |
 | Local signing keystore | `android\debug.jks` excluded by `.gitignore`; not pushed |
 | Public repository | `https://github.com/criterball/BaroWeather` |
-| Push | Source, docs and signed v0.4.1 APK pushed to `main` |
+| Push | Source, docs and signed v0.4.2 APK pushed to `main` |
 
 ## Notes
 

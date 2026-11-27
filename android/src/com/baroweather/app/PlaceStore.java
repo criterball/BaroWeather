@@ -27,11 +27,17 @@ public final class PlaceStore {
         public final String name;
         public final double lat;
         public final double lon;
+        public final boolean favorite;
 
         public Place(String name, double lat, double lon) {
+            this(name, lat, lon, true);
+        }
+
+        public Place(String name, double lat, double lon, boolean favorite) {
             this.name = name;
             this.lat = lat;
             this.lon = lon;
+            this.favorite = favorite;
         }
 
         String key() {
@@ -47,7 +53,8 @@ public final class PlaceStore {
             for (int i = 0; i < array.length(); i++) {
                 JSONObject item = array.getJSONObject(i);
                 results.add(new Place(item.optString("name", ""),
-                        item.optDouble("lat", 0.0), item.optDouble("lon", 0.0)));
+                        item.optDouble("lat", 0.0), item.optDouble("lon", 0.0),
+                        item.optBoolean("favorite", true)));
             }
         } catch (Exception ignored) {
             // Treat a corrupt list as empty rather than crashing the dashboard.
@@ -59,7 +66,7 @@ public final class PlaceStore {
         if (name == null || name.trim().length() == 0) {
             return false;
         }
-        Place candidate = new Place(name.trim(), lat, lon);
+        Place candidate = new Place(name.trim(), lat, lon, true);
         List<Place> places = getPlaces();
         List<Place> kept = new ArrayList<Place>();
         for (Place place : places) {
@@ -84,6 +91,29 @@ public final class PlaceStore {
         save(places);
     }
 
+    public void setFavorite(int index, boolean favorite) {
+        List<Place> places = getPlaces();
+        if (index < 0 || index >= places.size()) {
+            return;
+        }
+        Place old = places.get(index);
+        places.set(index, new Place(old.name, old.lat, old.lon, favorite));
+        save(places);
+    }
+
+    public int indexOf(Place place) {
+        if (place == null) {
+            return -1;
+        }
+        List<Place> places = getPlaces();
+        for (int i = 0; i < places.size(); i++) {
+            if (places.get(i).key().equals(place.key())) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public void save(List<Place> places) {
         JSONArray array = new JSONArray();
         for (Place place : places) {
@@ -92,6 +122,7 @@ public final class PlaceStore {
                 item.put("name", place.name);
                 item.put("lat", place.lat);
                 item.put("lon", place.lon);
+                item.put("favorite", place.favorite);
                 array.put(item);
             } catch (Exception ignored) {
                 // Skip a place that cannot be serialised.

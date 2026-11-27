@@ -156,6 +156,12 @@ Nothing is uploaded or shared automatically.
 - Saved places appear as a horizontal chip strip under the toolbar. Search and
   device-location results can be saved; each chip switches the whole dashboard
   and refreshes pressure. Settings can save, switch and remove places.
+- The toolbar star opens a dedicated **Starred favorites** page. It shows only
+  starred places with name and coordinates; `ADD FROM SEARCH` opens the existing
+  geocoder and stars the chosen result, `STAR CURRENT LOCATION` stars the active
+  place, the location button opens a favorite and refreshes the dashboard, and
+  the remove button unstars it. The dashboard chip strip also follows the starred
+  flag.
 - The home-screen widget uses the last cached pressure reading, place name and
   warning-colour strip. Because it reads the cache, it remains useful offline
   and never starts a network request from the widget itself. Tapping it opens

@@ -20,6 +20,15 @@
     <string name="disclaimer_title">Why this warning appears</string>
     <string name="disclaimer_body">Low pressure, a rapid fall, or very high pressure can be uncomfortable for some people who are sensitive to weather changes. Consider hydration, avoiding sudden posture changes, and reducing exertion, and follow any plan given by a clinician.\n\nThis feature is informational weather guidance. It is not medical advice, diagnosis, or a substitute for professional care.</string>
     <string name="close">Close</string>
+    <string name="favorites">Favorites</string>
+    <string name="favorites_title">STARRED FAVORITES</string>
+    <string name="favorites_hint">Starred places open instantly from the dashboard. Add the current place or search for another.</string>
+    <string name="favorites_empty">No starred places yet. Add the current place or search for one.</string>
+    <string name="favorite_add_search">ADD FROM SEARCH</string>
+    <string name="favorite_add_current">STAR CURRENT LOCATION</string>
+    <string name="favorite_starred">Starred favorite</string>
+    <string name="open_favorite">Open favorite</string>
+    <string name="remove_favorite">Remove favorite</string>
     <string name="search_hint">Town or city name</string>
     <string name="search_button">SEARCH</string>
     <string name="no_match">No matching place found.</string>

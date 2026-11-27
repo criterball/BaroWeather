@@ -9,12 +9,17 @@ the top of the screen so pressure-sensitive users can take precautions.
 
 *Dashboard screenshot from the test tablet (Lenovo TB-X606F, Android 10).*
 
+![BaroWeather starred favorites page](docs/screenshots/favorites.png)
+
+*The dedicated starred-favorites page, also from the same test tablet.*
+
 Project folder: `D:\opencode_home_win\038_2026_11_27_BaroWeather`
 
 ## Status
 
 Design pass: **complete**. v0.1–v0.3 code and APKs: **complete and device-smoke-tested**.
-v0.4.0 bonus set and v0.4.1 reading/rain refinements: **complete and device-smoke-tested**.
+v0.4.0 bonus set, v0.4.1 reading/rain refinements and v0.4.2 favorites page:
+**complete and device-smoke-tested**.
 
 - v0.2 added the long-range pressure histogram and reading/visibility settings.
 - v0.3 added full landscape layouts and an explicit orientation setting.
@@ -23,6 +28,8 @@ v0.4.0 bonus set and v0.4.1 reading/rain refinements: **complete and device-smok
   control, and PNG/CSV history export.
 - v0.4.1 adds rain chance and millimetres in expanded forecast rows, a 110% text
   scale, three new high-contrast themes, and single-line large temperature text.
+- v0.4.2 adds a dedicated starred-favorites page with search, current-place
+  starring, open and remove actions, plus a toolbar shortcut.
 
 See `VERIFICATION.md` for the build and device results.
 
@@ -40,6 +47,9 @@ See `VERIFICATION.md` for the build and device results.
   colour strip; tapping it opens the app.
 - **Multiple saved places.** Search or device locations can be saved and switched
   from a horizontal chip strip, including the tablet left rail.
+- **Starred favorites page.** A full page reached from the toolbar star lists only
+  starred places; add the current place, search for another, open one instantly,
+  or unstar it with the remove button.
 - **Rain detail.** Chance of rain (%) and expected amount (mm) in the hero chip,
   hourly/daily rows and expanded details, plus a `Rain today` details entry.
 - **Accessible history.** Optional diagonal/horizontal/vertical hatch patterns,
@@ -119,7 +129,7 @@ dependencies):
 & 'D:\opencode_home_win\038_2026_11_27_BaroWeather\android\build-apk.ps1'
 ```
 
-Output: `dist\android\baroweather-0.4.1.apk` (versionCode 4). Earlier signed
+Output: `dist\android\baroweather-0.4.2.apk` (versionCode 5). Earlier signed
 APKs are retained locally for the backup record. The local signing keystore
 `android\debug.jks` is deliberately excluded from the public repository.
 

@@ -34,6 +34,7 @@ import java.util.concurrent.Executors;
 public final class MainActivity extends BaseActivity {
     private static final int REQUEST_LOCATION = 101;
     private static final int REQUEST_SEARCH = 202;
+    private static final int REQUEST_FAVORITES = 403;
     private static final int REQUEST_NOTIFICATIONS = 303;
 
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -136,6 +137,13 @@ public final class MainActivity extends BaseActivity {
                         REQUEST_SEARCH);
             }
         });
+        findViewById(R.id.favorites_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(MainActivity.this, FavoritesActivity.class),
+                        REQUEST_FAVORITES);
+            }
+        });
         findViewById(R.id.settings_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -225,10 +233,19 @@ public final class MainActivity extends BaseActivity {
         }
         container.removeAllViews();
         List<PlaceStore.Place> entries = new PlaceStore(this).getPlaces();
-        row.setVisibility(entries.isEmpty() ? View.GONE : View.VISIBLE);
+        int starred = 0;
+        for (PlaceStore.Place place : entries) {
+            if (place.favorite) {
+                starred++;
+            }
+        }
+        row.setVisibility(starred == 0 ? View.GONE : View.VISIBLE);
         ThemeColors colors = new ThemeColors(this);
         for (int i = 0; i < entries.size(); i++) {
             final PlaceStore.Place place = entries.get(i);
+            if (!place.favorite) {
+                continue;
+            }
             Button chip = new Button(this);
             chip.setText(place.name);
             chip.setAllCaps(false);
@@ -368,6 +385,16 @@ public final class MainActivity extends BaseActivity {
             new PlaceStore(this).add(name, lat, lon);
             placeButton.setText(name);
             renderSavedPlaces();
+            fetchWeather();
+        } else if (requestCode == REQUEST_FAVORITES && resultCode == RESULT_OK && intent != null) {
+            double lat = intent.getDoubleExtra("lat", store.getLat());
+            double lon = intent.getDoubleExtra("lon", store.getLon());
+            String name = intent.getStringExtra("name");
+            if (name == null) {
+                name = "Selected place";
+            }
+            store.setPlace(name, lat, lon);
+            placeButton.setText(name);
             fetchWeather();
         }
     }

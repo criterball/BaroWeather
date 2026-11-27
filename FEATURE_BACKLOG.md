@@ -73,6 +73,17 @@
 | 4 | Unstar/remove a favorite | Done, removes from starred list and dashboard chip strip |
 | 5 | Version/APK bump | Done, v0.4.2 / versionCode 5, signed and device-verified |
 
+## v0.4.3 — complete
+
+| # | Feature | Status |
+| --- | --- | --- |
+| 1 | Keyless MET Norway pressure fallback behind Open-Meteo | Done, foreground fetch falls back on primary failure with no embedded secret |
+| 2 | `air_pressure_at_sea_level` normalised to the app's `pressureMsl` signal | Done, hPa field mapped into current and hourly data; 6-hourly samples interpolated to hourly; `surfacePressure` stays display-only and shows `—` when absent |
+| 3 | Provider-aware MET Norway caching | Done, four-decimal coordinate key, `Expires`/`Last-Modified` handling, 30 min Nordic / 3 h global minimum interval |
+| 4 | Identifying User-Agent and attribution | Done, app/version/repository UA and `Data from MET Norway` source display in Details |
+| 5 | Forecast-only scope | Done, no past samples so 3 h/12 h past trend stays neutral; 92-day history and place search remain Open-Meteo; background jobs remain Open-Meteo-only |
+| 6 | Version/APK bump | Done, v0.4.3 / versionCode 6, signed and device-verified |
+
 ## Remaining / later
 
 | # | Feature | Notes |
@@ -80,7 +91,7 @@
 | 19 | Radar / government severe-weather alerts | Different providers, heavier data model |
 | 20 | Wear OS build | Out of scope for the phone/tablet APK |
 | 22 | Automated UI screenshots / instrumented tests | Host unit tests and manual device smoke test done; automation later |
-| 30 | Alternative weather provider | Deferred feature 9: explicitly a later, challenging integration; keep Open-Meteo as primary until then |
+| 30 | Full multi-provider replacement | Keyless MET Norway forecast-pressure fallback delivered in v0.4.3; a replacement matching Open-Meteo's 92-day archive and geocoding remains deferred |
 | 31 | Localisation | Deferred to the end of the list: Spanish, French, German and Polish after the other later work |
 
 ## Not planned

@@ -17,6 +17,7 @@ dist/android/*.apk
 !dist/android/baroweather-0.4.0.apk
 !dist/android/baroweather-0.4.1.apk
 !dist/android/baroweather-0.4.2.apk
+!dist/android/baroweather-0.4.3.apk
 
 # OS/editor noise.
 Thumbs.db

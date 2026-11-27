@@ -18,7 +18,8 @@ public final class PressureAlertJobService extends JobService {
             public void run() {
                 try {
                     SettingsStore store = new SettingsStore(PressureAlertJobService.this);
-                    WeatherData weather = WeatherRepository.fetch(store.getLat(), store.getLon());
+                    WeatherData weather = WeatherRepository.fetchOpenMeteoOnly(
+                            store.getLat(), store.getLon());
                     weather.placeName = store.getPlaceName();
                     store.saveCache(weather.rawJson, weather.fetchedAt);
                     PressureNotifier.evaluateAndMaybeNotify(PressureAlertJobService.this, weather);

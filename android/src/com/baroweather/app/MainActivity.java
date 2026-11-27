@@ -43,6 +43,7 @@ public final class MainActivity extends BaseActivity {
     private SettingsStore store;
     private WeatherData data;
     private boolean showingCache;
+    private boolean forceMetNo;
     private int currentTheme;
 
     private AlertBannerView banner;
@@ -75,11 +76,13 @@ public final class MainActivity extends BaseActivity {
     private LinearLayout dailyContainer;
     private GridLayout detailsGrid;
     private TextView lastUpdated;
+    private TextView sourceLabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         store = new SettingsStore(this);
         currentTheme = store.getTheme();
+        forceMetNo = "met-no".equals(getIntent().getStringExtra("forceProvider"));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -121,6 +124,7 @@ public final class MainActivity extends BaseActivity {
         dailyContainer = findViewById(R.id.daily_container);
         detailsGrid = findViewById(R.id.details_grid);
         lastUpdated = findViewById(R.id.last_updated);
+        sourceLabel = findViewById(R.id.source_label);
 
         placeButton.setText(store.getPlaceName());
         placeButton.setOnClickListener(new View.OnClickListener() {
@@ -282,7 +286,8 @@ public final class MainActivity extends BaseActivity {
             @Override
             public void run() {
                 try {
-                    final WeatherData fresh = WeatherRepository.fetch(lat, lon);
+                    final WeatherData fresh = WeatherRepository.fetch(
+                            getApplicationContext(), lat, lon, forceMetNo);
                     fresh.placeName = store.getPlaceName();
                     store.saveCache(fresh.rawJson, fresh.fetchedAt);
                     PressureNotifier.evaluateAndMaybeNotify(MainActivity.this, fresh);
@@ -508,7 +513,10 @@ public final class MainActivity extends BaseActivity {
                         .format(new java.util.Date(weather.fetchedAt))
                 : "—";
         lastUpdated.setText(getString(R.string.last_updated, updated)
-                + (fromCache ? "  ·  " + getString(R.string.offline_data) : ""));
+                + ((fromCache || weather.stale)
+                        ? "  ·  " + getString(R.string.offline_data) : ""));
+        sourceLabel.setText("met-no".equals(weather.provider)
+                ? R.string.source_met_no : R.string.source);
         WidgetUpdater.update(this, weather);
     }
 
@@ -637,7 +645,11 @@ public final class MainActivity extends BaseActivity {
         addDetail(getString(R.string.sea_level),
                 NativeCore.formatPressureText(currentHpa, store.getPressureUnit()));
         addDetail(getString(R.string.surface_pressure),
-                NativeCore.formatPressureText(now.surfacePressure, store.getPressureUnit()));
+                Double.isNaN(now.surfacePressure) ? "—"
+                        : NativeCore.formatPressureText(now.surfacePressure,
+                                store.getPressureUnit()));
+        addDetail(getString(R.string.data_source), "met-no".equals(weather.provider)
+                ? getString(R.string.provider_met_no) : getString(R.string.provider_open_meteo));
         addDetail("Coordinates", String.format(Locale.US, "%.3f, %.3f",
                 valid(weather.latitude, 0), valid(weather.longitude, 0)));
         addDetail("Elevation", String.format(Locale.US, "%.0f m", valid(weather.elevation, 0)));

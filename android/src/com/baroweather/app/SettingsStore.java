@@ -151,6 +151,38 @@ public final class SettingsStore {
         prefs.edit().putString("pressure_series_json", json).apply();
     }
 
+    /** Cached MET Norway compact response, keyed by four-decimal coordinates. */
+    public String getMetNoKey() {
+        return prefs.getString("metno_key", "");
+    }
+
+    public String getMetNoJson() {
+        return prefs.getString("metno_json", null);
+    }
+
+    public long getMetNoFetchedAt() {
+        return prefs.getLong("metno_fetched_at", 0L);
+    }
+
+    public long getMetNoExpiresAt() {
+        return prefs.getLong("metno_expires_at", 0L);
+    }
+
+    public long getMetNoLastModified() {
+        return prefs.getLong("metno_last_modified", 0L);
+    }
+
+    public void saveMetNo(String key, String json, long fetchedAt, long expiresAt,
+            long lastModified) {
+        prefs.edit()
+                .putString("metno_key", key)
+                .putString("metno_json", json)
+                .putLong("metno_fetched_at", fetchedAt)
+                .putLong("metno_expires_at", expiresAt)
+                .putLong("metno_last_modified", lastModified)
+                .apply();
+    }
+
     public void saveThresholds(double low, double high, double drop3, double change12) {
         SharedPreferences.Editor editor = prefs.edit();
         putDoubleCompat(editor, "low", low);

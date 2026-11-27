@@ -76,6 +76,10 @@
     <string name="cancel">CANCEL</string>
     <string name="last_updated">Updated %1$s</string>
     <string name="source">Open-Meteo · informational, not medical advice</string>
+    <string name="source_met_no">Data from MET Norway · forecast only · informational, not medical advice</string>
+    <string name="data_source">Data source</string>
+    <string name="provider_open_meteo">Open-Meteo</string>
+    <string name="provider_met_no">MET Norway</string>
     <string name="default_place">London, United Kingdom</string>
     <string name="permission_denied">Location permission denied. Use ENTER CITY instead.</string>
     <string name="location_unavailable">Location unavailable. Search for a place instead.</string>

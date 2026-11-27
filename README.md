@@ -18,8 +18,8 @@ Project folder: `D:\opencode_home_win\038_2026_11_27_BaroWeather`
 ## Status
 
 Design pass: **complete**. v0.1–v0.3 code and APKs: **complete and device-smoke-tested**.
-v0.4.0 bonus set, v0.4.1 reading/rain refinements and v0.4.2 favorites page:
-**complete and device-smoke-tested**.
+v0.4.0 bonus set, v0.4.1 reading/rain refinements, v0.4.2 favorites page and
+v0.4.3 keyless MET Norway fallback: **complete and device-smoke-tested**.
 
 - v0.2 added the long-range pressure histogram and reading/visibility settings.
 - v0.3 added full landscape layouts and an explicit orientation setting.
@@ -30,6 +30,9 @@ v0.4.0 bonus set, v0.4.1 reading/rain refinements and v0.4.2 favorites page:
   scale, three new high-contrast themes, and single-line large temperature text.
 - v0.4.2 adds a dedicated starred-favorites page with search, current-place
   starring, open and remove actions, plus a toolbar shortcut.
+- v0.4.3 adds a keyless MET Norway Locationforecast fallback for current and
+  hourly forecast pressure when Open-Meteo is unavailable, with source display
+  and provider-aware caching.
 
 See `VERIFICATION.md` for the build and device results.
 
@@ -58,6 +61,12 @@ See `VERIFICATION.md` for the build and device results.
   series and symptom annotations as CSV using platform sharing only.
 - **Offline-friendly.** The last forecast and long-range series are cached; the
   app shows an `OFFLINE DATA` chip when it cannot refresh.
+- **Keyless provider fallback.** Open-Meteo stays primary. If it fails, the
+  foreground dashboard can use MET Norway's keyless `air_pressure_at_sea_level`
+  forecast. Coarser 6-hourly feeds are interpolated to an hourly grid for the
+  3 h/12 h rules; past-trend and 92-day history remain Open-Meteo-only. The
+  source is labelled in Details, surface pressure shows `—` when unavailable,
+  and no API key or secret is embedded in the APK.
 
 ## Design decisions
 
@@ -69,10 +78,17 @@ See `VERIFICATION.md` for the build and device results.
   sharing and background jobs all use Android platform APIs.
 - **Java fallback.** A Java implementation of the same pressure rules runs when
   the native `.so` is unavailable, so the APK still works on unsupported ABIs.
-- **Data source: Open-Meteo Forecast API.** No API key is required for
+- **Primary data source: Open-Meteo Forecast API.** No API key is required for
   non-commercial use. The app requests current conditions, hourly pressure,
   hourly/daily forecast and geocoding over HTTPS. The long-range chart asks for
   up to 92 past days and 16 forecast days, then caches the response.
+- **Fallback data source: MET Norway Locationforecast 2.0.** Used only for the
+  foreground dashboard when Open-Meteo fails. It supplies current and hourly
+  sea-level pressure (`air_pressure_at_sea_level`, hPa), is keyless, and is used
+  with an identifying User-Agent and provider-aware caching. It has no past
+  samples, no 92-day archive and no native place search, so Open-Meteo remains
+  primary for history, trends and geocoding. Background notification checks stay
+  Open-Meteo-only while the app is inactive.
 - **Minimum Android:** API 21 (Android 5.0). Target/build: API 35. The native
   library is built for arm64, armv7 and x86_64; the Java fallback covers any
   missing ABI.
@@ -129,7 +145,7 @@ dependencies):
 & 'D:\opencode_home_win\038_2026_11_27_BaroWeather\android\build-apk.ps1'
 ```
 
-Output: `dist\android\baroweather-0.4.2.apk` (versionCode 5). Earlier signed
+Output: `dist\android\baroweather-0.4.3.apk` (versionCode 6). Earlier signed
 APKs are retained locally for the backup record. The local signing keystore
 `android\debug.jks` is deliberately excluded from the public repository.
 
@@ -139,6 +155,7 @@ The connected test device is `HPV2VPC2` (Lenovo TB-X606F, Android 10).
 
 Public repository: `https://github.com/criterball/BaroWeather`.
 
-Deferred to a later release: the alternative weather provider (feature 9) and
-localisation into Spanish, French, German and Polish. Those are listed at the end
-of `FEATURE_BACKLOG.md`.
+The keyless MET Norway pressure fallback is included in v0.4.3. Deferred to a
+later release: a full multi-provider replacement with comparable 92-day archive
+and geocoding, plus localisation into Spanish, French, German and Polish. Those
+are listed at the end of `FEATURE_BACKLOG.md`.

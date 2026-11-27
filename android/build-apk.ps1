@@ -31,7 +31,7 @@ $flat = Join-Path $build 'compiled.flata'
 $baseApk = Join-Path $build 'base.apk'
 & $aapt2 compile --dir (Join-Path $project 'res') -o $flat
 if ($LASTEXITCODE -ne 0) { throw 'aapt2 compile failed' }
-& $aapt2 link -o $baseApk -I $androidJar --manifest (Join-Path $project 'AndroidManifest.xml') --java $gen --min-sdk-version 21 --target-sdk-version 35 --version-code 5 --version-name 0.4.2 $flat
+& $aapt2 link -o $baseApk -I $androidJar --manifest (Join-Path $project 'AndroidManifest.xml') --java $gen --min-sdk-version 21 --target-sdk-version 35 --version-code 6 --version-name 0.4.3 $flat
 if ($LASTEXITCODE -ne 0) { throw 'aapt2 link failed' }
 
 $sources = (Get-ChildItem (Join-Path $project 'src') -Recurse -Filter *.java).FullName
@@ -77,7 +77,7 @@ if (-not (Test-Path $keystore)) {
 
 $outDir = Join-Path $root 'dist\android'
 New-Item -ItemType Directory -Path $outDir -Force | Out-Null
-$apk = Join-Path $outDir 'baroweather-0.4.2.apk'
+$apk = Join-Path $outDir 'baroweather-0.4.3.apk'
 $apksigner = Join-Path $buildTools 'apksigner.bat'
 & $apksigner sign --ks $keystore --ks-pass pass:android --key-pass pass:android --v1-signing-enabled true --v2-signing-enabled true --v3-signing-enabled true --out $apk $aligned
 if ($LASTEXITCODE -ne 0) { throw 'apksigner failed' }

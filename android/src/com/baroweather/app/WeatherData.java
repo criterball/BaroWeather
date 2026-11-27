@@ -12,6 +12,10 @@ public final class WeatherData {
     public double elevation;
     public String timezone;
     public long fetchedAt;
+    /** "open-meteo" or "met-no"; used for attribution and source display. */
+    public String provider = "open-meteo";
+    /** True when the MET Norway fallback was served from its policy cache. */
+    public boolean stale;
     public Current current;
     public final List<Hour> hours = new ArrayList<Hour>();
     public final List<Day> days = new ArrayList<Day>();
@@ -42,6 +46,7 @@ public final class WeatherData {
         public double pressureMsl;
         public double surfacePressure;
         public double windSpeed;
+        public double windDirection;
         public double windGusts;
         public double uvIndex;
         public double visibility;

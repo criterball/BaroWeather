@@ -116,6 +116,7 @@ Two columns on phone, four on tablet:
 - precipitation now, rain today (daily total) and cloud cover
 - surface pressure vs sea-level pressure
 - coordinates and elevation
+- data source: `Open-Meteo` or `MET Norway`, with the required attribution footer
 
 ### 7. Long-range pressure histogram
 
@@ -269,6 +270,27 @@ wide labelled chart on the right.
   gauge keeps a 20 dp top inset for its full arc stroke, and the landscape chart
   plot starts 42 dp from the top, avoiding top-edge clipping after the v0.4
   spacing adjustment.
+
+## Data sources
+
+- Open-Meteo is the primary forecast, geocoding and 92-day pressure-history
+  source. It is requested first on every foreground refresh.
+- If that request fails, the foreground dashboard falls back to the keyless MET
+  Norway Locationforecast `compact` endpoint and maps
+  `air_pressure_at_sea_level` to the app's sea-level `pressureMsl` signal. The
+  Details footer changes to `Data from MET Norway` and the details grid gains a
+  `Data source` row.
+- MET Norway fallback samples are interpolated onto an hourly grid when the
+  provider supplies only 6-hourly points, so 3 h/12 h and 24 h windows keep
+  their meaning. Surface pressure shows `—` because the fallback does not
+  supply it.
+- MET Norway fallback data is cached by rounded coordinates with provider
+  `Expires`/`Last-Modified` handling and 30 min Nordic / 3 h global minimum
+  intervals. Cached fallback responses show the `OFFLINE DATA` chip.
+- The long-range chart, geocoding and background notification checks stay on
+  Open-Meteo only. MET Norway has no past samples, no comparable archive and no
+  weather-API place search, and must not be polled while the app is inactive.
+  Its past-trend chips therefore read zero until Open-Meteo data is available.
 
 ## Empty/error states
 

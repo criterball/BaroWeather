@@ -1,6 +1,6 @@
 # BaroWeather verification record
 
-Date: 2026-11-27
+Date: 2026-11-28 (v0.4.3 added; earlier 2026-11-27 checks retained)
 
 ## Host checks
 
@@ -13,8 +13,10 @@ Date: 2026-11-27
 | `javac` / `d8` | Passed, single `classes.dex` |
 | APK contents | `classes.dex` plus `lib/{arm64-v8a,armeabi-v7a,x86_64}/libbaroweather_core.so` |
 | `apksigner verify` | v1 true, v2 true, v3 true |
-| Build/version | v0.4.2, versionCode 5, output `dist\android\baroweather-0.4.2.apk` |
-| APK size | 4,898,005 bytes (v0.4.1 was 4,893,686 bytes) |
+| Build/version | v0.4.3, versionCode 6, output `dist\android\baroweather-0.4.3.apk` |
+| APK size | 4,906,198 bytes (v0.4.2 was 4,898,005 bytes) |
+| Final APK SHA-256 | `3994F7937277353C407E4D3752BA4D209835B924DD4F8AF13716213C292905DC` |
+| Backup source ZIP SHA-256 | `B386BDBDF1641AC5FFF27854F28D9C72FD3507DBC917D259A18CFABE5891F58E` |
 
 ## Device checks (Lenovo TB-X606F / `HPV2VPC2`, Android 10, 1200×1920)
 
@@ -83,14 +85,30 @@ Date: 2026-11-27
 | Screenshot | `docs/screenshots/favorites.png` captured from the test tablet and linked from README |
 | Logcat | No FATAL EXCEPTION or ANR during page open, favorite selection, search add or remove |
 
+## v0.4.3 keyless fallback checks
+
+| Check | Result |
+| --- | --- |
+| `cargo test --offline` (core) | Re-run: 15 passed, 0 failed |
+| Live MET Norway sample | `compact` endpoint returned `air_pressure_at_sea_level` 1012.8 hPa with `Expires` and `Last-Modified` headers |
+| `adb install -r` | v0.4.3 installed on `HPV2VPC2`; `versionName=0.4.3`, `versionCode=6` |
+| Normal Open-Meteo path | Details `Data source` = `Open-Meteo`; footer `Open-Meteo · informational, not medical advice`; surface pressure `998 hPa`; no `OFFLINE DATA` |
+| Forced fallback path | `am start ... -e forceProvider met-no`; Details `Data source` = `MET Norway`; footer `Data from MET Norway · forecast only · informational, not medical advice` |
+| Fallback surface pressure | Shows `—` instead of `NaN hPa` when MET Norway does not supply surface pressure |
+| Fallback cadence | Hourly Nordic / coarser 6-hourly samples normalised to an hourly grid; 24 h and next-12-hour windows remain window-correct |
+| Fallback cache state | Reused MET Norway response showed `Updated 09:21 · OFFLINE DATA`; cached raw JSON reparsed with the final provider label |
+| Past-trend limitation | MET Norway has no past samples, so 3 h/12 h past-trend chips read `+0.0 hPa`; current and incoming forecast warnings remain active |
+| Logcat | No FATAL EXCEPTION, `ANR in com.baroweather.app` or AndroidRuntime crash during either provider path |
+| No secret | No API key or token in source, resources or APK; only an identifying User-Agent is sent |
+
 ## Publication checks
 
 | Check | Result |
 | --- | --- |
-| Final backup | `D:\opencode_home_win\backups\BaroWeather\2026-11-27_v0.4.2_favorites\` with source ZIP, signed APK and SHA-256 record |
+| Final backup | `D:\opencode_home_win\backups\BaroWeather\2026-11-28_v0.4.3_metno-fallback\` with source ZIP, signed APK and SHA-256 record |
 | Local signing keystore | `android\debug.jks` excluded by `.gitignore`; not pushed |
 | Public repository | `https://github.com/criterball/BaroWeather` |
-| Push | Source, docs and signed v0.4.2 APK pushed to `main` |
+| Push | Source, docs and signed v0.4.3 APK pushed to `main` |
 
 ## Notes
 

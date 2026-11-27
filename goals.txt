@@ -13,7 +13,8 @@ PRIMARY
 
 PRESSURE
 --------
-6. Use sea-level pressure from Open-Meteo, show surface pressure as secondary.
+6. Use sea-level pressure from Open-Meteo, with a keyless MET Norway forecast
+   fallback; show surface pressure as secondary only.
 7. Detect current low (<1005 hPa default), current very high (>1030 hPa), and
    significant 3 h / 12 h falls or rises.
 8. Make thresholds and trend sensitivity configurable.
@@ -31,7 +32,8 @@ GUI
 
 DATA / PLATFORM
 ---------------
-17. Open-Meteo forecast + geocoding over HTTPS, no API key.
+17. Open-Meteo forecast + geocoding over HTTPS, no API key; MET Norway
+    Locationforecast as a keyless forecast-pressure fallback only.
 18. Location permission with manual city fallback.
 19. Cache last forecast for offline viewing with timestamp.
 20. Java fallback when the Rust native library is unavailable.
@@ -51,6 +53,14 @@ ADDED IN v0.4.1
 ADDED IN v0.4.2
 ---------------
 - Dedicated starred-favorites page with toolbar shortcut, search/current add, open and remove.
+
+ADDED IN v0.4.3
+---------------
+- Keyless MET Norway forecast-pressure fallback behind Open-Meteo, with provider
+  attribution and no secret key in the APK.
+- Provider-aware cache, identifying User-Agent and forecast-only scope; coarser
+  samples are interpolated hourly, but past trend, long history and geocoding
+  stay with Open-Meteo.
 
 OUT OF SCOPE FOR v0.1
 ---------------------

@@ -78,6 +78,66 @@
         <item name="bwOk">#005B2B</item>
     </style>
 
+    <!-- Cool blue: white text on deep blue, cyan highlights. -->
+    <style name="AppThemeBlueContrast" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:windowBackground">#001A33</item>
+        <item name="android:colorAccent">#66F0FF</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:textColorSecondary">#D6E8FF</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="bwBackground">#001A33</item>
+        <item name="bwSurface">#003366</item>
+        <item name="bwSurfaceRaised">#004080</item>
+        <item name="bwDivider">#66B2FF</item>
+        <item name="bwTextPrimary">#FFFFFF</item>
+        <item name="bwTextSecondary">#D6E8FF</item>
+        <item name="bwAccent">#66F0FF</item>
+        <item name="bwWarm">#FFD180</item>
+        <item name="bwAlert">#FF5252</item>
+        <item name="bwAlertDeep">#8E0000</item>
+        <item name="bwOk">#69F0AE</item>
+    </style>
+
+    <!-- Navy: near-black navy with pale blue text for long reading sessions. -->
+    <style name="AppThemeNavyContrast" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:windowBackground">#000A1F</item>
+        <item name="android:colorAccent">#8AB4FF</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:textColorSecondary">#CFE0FF</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="bwBackground">#000A1F</item>
+        <item name="bwSurface">#061A3A</item>
+        <item name="bwSurfaceRaised">#0C2750</item>
+        <item name="bwDivider">#4D90FE</item>
+        <item name="bwTextPrimary">#FFFFFF</item>
+        <item name="bwTextSecondary">#CFE0FF</item>
+        <item name="bwAccent">#8AB4FF</item>
+        <item name="bwWarm">#FFC45E</item>
+        <item name="bwAlert">#FF5252</item>
+        <item name="bwAlertDeep">#7A0000</item>
+        <item name="bwOk">#64FFDA</item>
+    </style>
+
+    <!-- Matrix green: black with bright phosphor green text and lime accents. -->
+    <style name="AppThemeMatrixContrast" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:windowBackground">#000000</item>
+        <item name="android:colorAccent">#CCFF33</item>
+        <item name="android:textColorPrimary">#00FF66</item>
+        <item name="android:textColorSecondary">#B6FFB6</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="bwBackground">#000000</item>
+        <item name="bwSurface">#00120A</item>
+        <item name="bwSurfaceRaised">#002A12</item>
+        <item name="bwDivider">#00FF66</item>
+        <item name="bwTextPrimary">#00FF66</item>
+        <item name="bwTextSecondary">#B6FFB6</item>
+        <item name="bwAccent">#CCFF33</item>
+        <item name="bwWarm">#FFC400</item>
+        <item name="bwAlert">#FF3B30</item>
+        <item name="bwAlertDeep">#7A0000</item>
+        <item name="bwOk">#00FF66</item>
+    </style>
+
     <style name="CardTitle">
         <item name="android:textSize">13sp</item>
         <item name="android:textStyle">bold</item>

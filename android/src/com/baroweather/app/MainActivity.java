@@ -6,12 +6,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Paint;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -421,6 +423,7 @@ public final class MainActivity extends BaseActivity {
 
         placeName.setText(weather.placeName);
         temperature.setText(formatTemp(now.temperature));
+        fitTemperatureText();
         condition.setText(NativeCore.condition(now.weatherCode));
         heroIcon.setWeatherCode(now.weatherCode);
         feelsLike.setText(getString(R.string.feels_like) + ": " + formatTemp(now.apparentTemperature));
@@ -435,7 +438,7 @@ public final class MainActivity extends BaseActivity {
 
         WeatherData.Hour currentHour = hourAt(weather, nowIndex);
         rainChip.setText("rain " + (currentHour != null
-                ? String.format(Locale.US, "%.0f%%", valid(currentHour.precipitationProbability, 0))
+                ? rainText(currentHour.precipitationProbability, currentHour.precipitation)
                 : "—"));
         uvChip.setText("UV " + (currentHour != null
                 ? String.format(Locale.US, "%.1f", valid(currentHour.uvIndex, 0))
@@ -506,7 +509,9 @@ public final class MainActivity extends BaseActivity {
             ((TextView) item.findViewById(R.id.hour_pressure)).setText(
                     NativeCore.formatPressureText(hour.pressureMsl, store.getPressureUnit()));
             final TextView detail = item.findViewById(R.id.hour_detail);
-            detail.setText("gust " + formatWind(hour.windGusts) + "\ncloud "
+            detail.setText("rain " + rainText(hour.precipitationProbability,
+                    hour.precipitation)
+                    + "\ngust " + formatWind(hour.windGusts) + "\ncloud "
                     + String.format(Locale.US, "%.0f%%", valid(hour.cloudCover, 0)));
             item.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -562,7 +567,9 @@ public final class MainActivity extends BaseActivity {
                     : NativeCore.formatPressureText(dayPressureMin, store.getPressureUnit())
                             + " / " + NativeCore.formatPressureText(dayPressureMax,
                                     store.getPressureUnit());
-            detail.setText("pressure " + pressureRange + "\nsunrise "
+            detail.setText("rain " + rainText(day.precipitationProbability,
+                    day.precipitationSum)
+                    + "\npressure " + pressureRange + "\nsunrise "
                     + WeatherRepository.clockTime(day.sunrise) + " · sunset "
                     + WeatherRepository.clockTime(day.sunset) + " · daylight "
                     + String.format(Locale.US, "%.1f h", valid(day.daylightDuration, 0) / 3600.0));
@@ -591,6 +598,8 @@ public final class MainActivity extends BaseActivity {
                 String.format(Locale.US, "%.0f%%", valid(now.cloudCover, 0)));
         addDetail(getString(R.string.precipitation),
                 String.format(Locale.US, "%.1f mm", valid(now.precipitation, 0)));
+        addDetail("Rain today", today == null ? "—"
+                : String.format(Locale.US, "%.1f mm", valid(today.precipitationSum, 0)));
         addDetail(getString(R.string.sunrise), today == null ? "—"
                 : WeatherRepository.clockTime(today.sunrise));
         addDetail(getString(R.string.sunset), today == null ? "—"
@@ -659,6 +668,33 @@ public final class MainActivity extends BaseActivity {
 
     private static double valid(double value, double fallback) {
         return Double.isNaN(value) ? fallback : value;
+    }
+
+    private static String rainText(double probability, double millimetres) {
+        return String.format(Locale.US, "%.0f%% · %.1f mm",
+                valid(probability, 0), valid(millimetres, 0));
+    }
+
+    /** Shrinks the large temperature only as far as needed to stay on one line. */
+    private void fitTemperatureText() {
+        temperature.post(new Runnable() {
+            @Override
+            public void run() {
+                float size = 52f;
+                temperature.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+                int available = temperature.getWidth() - temperature.getPaddingLeft()
+                        - temperature.getPaddingRight();
+                if (available <= 0) {
+                    return;
+                }
+                Paint paint = temperature.getPaint();
+                String text = temperature.getText().toString();
+                while (size > 28f && paint.measureText(text) > available) {
+                    size -= 2f;
+                    temperature.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+                }
+            }
+        });
     }
 
     private static double dewPoint(double temp, double humidity) {

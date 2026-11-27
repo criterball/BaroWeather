@@ -15,6 +15,7 @@ core/target/
 # Keep only the current signed release APK in the public repo.
 dist/android/*.apk
 !dist/android/baroweather-0.4.0.apk
+!dist/android/baroweather-0.4.1.apk
 
 # OS/editor noise.
 Thumbs.db

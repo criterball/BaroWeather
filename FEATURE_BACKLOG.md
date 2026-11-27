@@ -52,6 +52,17 @@
 | 8 | Pressure history export | Done, PNG of visible chart and CSV of full series + symptom notes via platform share sheet |
 | 9 | Landscape sparkline/chart/gauge top-edge clearance | Done, density-aware 16 dp top / 8 dp bottom sparkline padding, 104 dp sparkline height, 20 dp gauge top inset with 160 dp gauge height, 42 dp histogram plot top |
 
+## v0.4.1 — complete
+
+| # | Feature | Status |
+| --- | --- | --- |
+| 1 | Rain chance (%) and expected mm in hero chip, hourly/daily rows and expanded details | Done, uses Open-Meteo `precipitation_probability`, `precipitation` and `precipitation_sum` already requested |
+| 2 | `Rain today` details-grid entry | Done, daily projected total in mm |
+| 3 | 110% text-scale option | Done, spinner now offers 100/110/125/150/175/200% plus system |
+| 4 | Large temperature stays on one line at 125% and above | Done, 52 sp base with automatic shrink to 28 sp and single-line layout |
+| 5 | Three new high-contrast themes | Done, blue, navy and matrix green alongside the four existing themes |
+| 6 | Version/APK bump | Done, v0.4.1 / versionCode 4, signed and device-verified |
+
 ## Remaining / later
 
 | # | Feature | Notes |

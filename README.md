@@ -14,13 +14,15 @@ Project folder: `D:\opencode_home_win\038_2026_11_27_BaroWeather`
 ## Status
 
 Design pass: **complete**. v0.1–v0.3 code and APKs: **complete and device-smoke-tested**.
-v0.4.0 bonus set: **complete and device-smoke-tested**.
+v0.4.0 bonus set and v0.4.1 reading/rain refinements: **complete and device-smoke-tested**.
 
 - v0.2 added the long-range pressure histogram and reading/visibility settings.
 - v0.3 added full landscape layouts and an explicit orientation setting.
 - v0.4 adds the pressure story, symptom log, quiet incoming-pressure alerts,
   home-screen widget, saved places, colour-blind-safe chart patterns, reduce-motion
   control, and PNG/CSV history export.
+- v0.4.1 adds rain chance and millimetres in expanded forecast rows, a 110% text
+  scale, three new high-contrast themes, and single-line large temperature text.
 
 See `VERIFICATION.md` for the build and device results.
 
@@ -38,8 +40,10 @@ See `VERIFICATION.md` for the build and device results.
   colour strip; tapping it opens the app.
 - **Multiple saved places.** Search or device locations can be saved and switched
   from a horizontal chip strip, including the tablet left rail.
+- **Rain detail.** Chance of rain (%) and expected amount (mm) in the hero chip,
+  hourly/daily rows and expanded details, plus a `Rain today` details entry.
 - **Accessible history.** Optional diagonal/horizontal/vertical hatch patterns,
-  a reduce-motion switch, large text, four themes and TalkBack labels.
+  a reduce-motion switch, 100–200% text scale, seven themes and TalkBack labels.
 - **Shareable history.** Export the visible chart as PNG or the full pressure
   series and symptom annotations as CSV using platform sharing only.
 - **Offline-friendly.** The last forecast and long-range series are cached; the
@@ -89,8 +93,11 @@ a tap tooltip, and min/max/average/change/forecast statistics. Optional hatch
 patterns make the three pressure bands distinguishable without relying on colour.
 It has a wide, labelled landscape layout with extra top clearance. The dashboard
 also has dedicated phone-landscape and tablet-landscape two-pane layouts.
-Settings include `Follow device`, `Portrait only` or `Landscape only`, 100–200%
-text scaling, four themes, chart patterns and a reduce-motion switch.
+Settings include `Follow device`, `Portrait only` or `Landscape only`, 100/110/
+125/150/175/200% text scaling, seven themes (Dark, Light, two high-contrast
+themes, plus Blue, Navy and Matrix green high contrast), chart patterns and a
+reduce-motion switch. The large temperature auto-fits on one line even at high
+text scales.
 
 ## Project folders
 
@@ -112,7 +119,7 @@ dependencies):
 & 'D:\opencode_home_win\038_2026_11_27_BaroWeather\android\build-apk.ps1'
 ```
 
-Output: `dist\android\baroweather-0.4.0.apk` (versionCode 3). Earlier signed
+Output: `dist\android\baroweather-0.4.1.apk` (versionCode 4). Earlier signed
 APKs are retained locally for the backup record. The local signing keystore
 `android\debug.jks` is deliberately excluded from the public repository.
 

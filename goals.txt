@@ -43,6 +43,11 @@ ADDED IN v0.4
 - Multiple saved places, colour-blind-safe chart patterns and reduce motion.
 - PNG/CSV pressure history export via the platform share sheet.
 
+ADDED IN v0.4.1
+---------------
+- Rain chance percentage and expected millimetres in forecast rows/details.
+- 110% text option, single-line large temperature, and blue/navy/matrix themes.
+
 OUT OF SCOPE FOR v0.1
 ---------------------
 - Medical diagnosis or treatment advice.

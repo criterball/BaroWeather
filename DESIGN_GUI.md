@@ -43,6 +43,12 @@ normal and high bands so colour-blind users can read it without relying on hue.
 | Accent | `#0277BD` |
 | Alert red | `#C5221F` |
 
+Three extra high-contrast palettes are available in Settings: **Blue** (deep
+blue `#001A33`, cyan `#66F0FF`, white text), **Navy** (near-black navy
+`#000A1F`, pale blue `#8AB4FF`, white text) and **Matrix green** (black,
+phosphor green `#00FF66`, lime `#CCFF33`). Red, amber and green signals remain
+distinct in all three.
+
 ## Screen structure
 
 ### 1. Warning banner (pinned at top)
@@ -63,9 +69,10 @@ When pressure is stable the band collapses to a 28 dp cyan/green strip:
 ### 2. Hero current card
 
 - Location name and last-updated time.
-- Large temperature (56 sp), weather icon drawn on canvas, condition text.
+- Large temperature (52 sp, auto-fitted to one line at any text scale), weather
+  icon drawn on canvas, condition text.
 - Feels-like, today's high/low, and day/night indicator.
-- Small chips: precipitation chance, UV index, wind.
+- Small chips: precipitation chance with expected mm, UV index, wind.
 
 ### 3. Pressure card (expanded, the app's focus)
 
@@ -87,13 +94,15 @@ When pressure is stable the band collapses to a 28 dp cyan/green strip:
 Horizontally scrollable 24-hour cards, 96 dp wide:
 
 - time, icon, temperature, precipitation %, pressure value.
-- Selected hour expands inline with wind/gust/cloud details.
+- Selected hour expands inline with rain chance and expected mm, wind/gust and
+  cloud details.
 - Thin pressure line drawn behind the row to show the trend visually.
 
 ### 5. Seven-day forecast
 
 Rows with day, icon, condition, high/low, precipitation chance, and a small
-temperature range bar. Tap expands pressure range and sunrise/sunset.
+temperature range bar. Tap expands rain chance and expected mm, pressure range
+and sunrise/sunset.
 
 ### 6. Details grid
 
@@ -104,7 +113,7 @@ Two columns on phone, four on tablet:
 - UV index + description
 - visibility
 - sunrise / sunset / daylight length
-- precipitation and cloud cover
+- precipitation now, rain today (daily total) and cloud cover
 - surface pressure vs sea-level pressure
 - coordinates and elevation
 
@@ -162,7 +171,8 @@ Nothing is uploaded or shared automatically.
   sensitivity, enable banner, optional notification.
 - Saved places: save current place, switch place or remove a saved place.
 - Reading/visibility: text size follows system scale or is overridden at
-  100–200%; dark, light, high-contrast dark and high-contrast light palettes.
+  100/110/125/150/175/200%; seven palettes (dark, light, high-contrast dark,
+  high-contrast light, blue, navy and matrix green high contrast).
 - Colour-blind-safe chart patterns and reduce motion (no needle animation).
 - Refresh behaviour, about/disclaimer; no account, ads or analytics.
 
@@ -231,10 +241,12 @@ wide labelled chart on the right.
 - Every icon-only control has `contentDescription`.
 - Red banner text includes the reason, never only colour.
 - TalkBack reads the pressure value, direction and alert level as one string.
-- Font size follows system scale, or an in-app override of 100–200%; layouts
-  scroll so fixed-sp labels do not clip at large sizes.
-- Minimum contrast 4.5:1 for body text in all four themes; the two high-contrast
-  palettes use pure black/white with strong accent, alert and OK colours.
+- Font size follows system scale, or an in-app override of 100/110/125/150/175/
+  200%; layouts scroll so fixed-sp labels do not clip at large sizes. The large
+  temperature auto-shrinks down to 28 sp and stays on one line.
+- Minimum contrast 4.5:1 for body text in all seven themes; the high-contrast
+  palettes use strong accent, alert and OK colours on dark/light/navy/blue black
+  backgrounds.
 - Screen orientation can follow the device or be locked to portrait/landscape
   for users who prefer a stable layout.
 - Chart patterns use diagonal, horizontal and vertical hatching as a second

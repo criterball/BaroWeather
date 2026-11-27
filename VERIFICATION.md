@@ -13,8 +13,8 @@ Date: 2026-11-27
 | `javac` / `d8` | Passed, single `classes.dex` |
 | APK contents | `classes.dex` plus `lib/{arm64-v8a,armeabi-v7a,x86_64}/libbaroweather_core.so` |
 | `apksigner verify` | v1 true, v2 true, v3 true |
-| Build/version | v0.4.0, versionCode 3, output `dist\android\baroweather-0.4.0.apk` |
-| APK size | 4,889,592 bytes (v0.3 was 4,864,648 bytes) |
+| Build/version | v0.4.1, versionCode 4, output `dist\android\baroweather-0.4.1.apk` |
+| APK size | 4,893,686 bytes (v0.4.0 was 4,889,592 bytes) |
 
 ## Device checks (Lenovo TB-X606F / `HPV2VPC2`, Android 10, 1200×1920)
 
@@ -34,6 +34,7 @@ Date: 2026-11-27
 | Widget | `dumpsys package` lists `com.baroweather.app/.BaroWeatherWidget` with its provider metadata |
 | Widget/export provider | `dumpsys package` also lists `com.baroweather.app/.ExportFileProvider` |
 | Logcat | No FATAL EXCEPTION, ANR or AndroidRuntime crash during the full flow |
+| Installed version | `dumpsys package` reports versionName `0.4.1`, versionCode `4` |
 
 ## Earlier v0.2/v0.3 checks retained
 
@@ -56,14 +57,28 @@ Date: 2026-11-27
 | Long-range chart | Plot top moved from 34 dp to 42 dp and unit label from 20 dp to 24 dp, giving the landscape chart extra room above the bars |
 | Visual rationale | Fixes the obscured top edges without touching pressure data or thresholds |
 
+## v0.4.1 rain and reading checks
+
+| Check | Result |
+| --- | --- |
+| Hero rain chip | Shows `rain 6% · 0.0 mm` from current-hour `precipitation_probability` + `precipitation` |
+| Expanded hourly card | `hour_detail` shows `rain 6% · 0.0 mm`, gust and cloud after tap |
+| Expanded daily row | Includes rain chance and projected mm alongside pressure and sun details |
+| Details grid | New `Rain today` entry from daily `precipitation_sum` |
+| Temperature at 110% | `temperature` bounds `[42,348][225,463]`, single-line `21°C` |
+| Temperature at 125% | `temperature` bounds `[42,362][251,492]`, still single-line `21°C` |
+| Text-scale options | Dropdown verified: System, 100%, 110%, 125%, 150%, 175%, 200% |
+| Theme options | Dropdown verified all seven themes; Matrix green applied with black background pixel `(0,0,0)` and surface `(0,18,10)` |
+| Theme/font/orientation | Restored to Dark, System text size and Follow device after checks |
+
 ## Publication checks
 
 | Check | Result |
 | --- | --- |
-| Final backup | `D:\opencode_home_win\backups\BaroWeather\2026-11-27_v0.4_bonus\` with source ZIP, signed APK and SHA-256 record |
+| Final backup | `D:\opencode_home_win\backups\BaroWeather\2026-11-27_v0.4.1_reading_rain\` with source ZIP, signed APK and SHA-256 record |
 | Local signing keystore | `android\debug.jks` excluded by `.gitignore`; not pushed |
 | Public repository | `https://github.com/criterball/BaroWeather` |
-| Push | Source, docs and signed v0.4.0 APK pushed to `main` |
+| Push | Source, docs and signed v0.4.1 APK pushed to `main` |
 
 ## Notes
 

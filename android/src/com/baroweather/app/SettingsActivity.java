@@ -237,7 +237,7 @@ public final class SettingsActivity extends BaseActivity {
         if (scale <= 0f) {
             return 0;
         }
-        float[] values = { 1f, 1.25f, 1.5f, 1.75f, 2f };
+        float[] values = { 1f, 1.1f, 1.25f, 1.5f, 1.75f, 2f };
         for (int i = 0; i < values.length; i++) {
             if (Math.abs(values[i] - scale) < 0.01f) {
                 return i + 1;
@@ -249,10 +249,11 @@ public final class SettingsActivity extends BaseActivity {
     private static float fontScaleValue(int position) {
         switch (position) {
             case 1: return 1f;
-            case 2: return 1.25f;
-            case 3: return 1.5f;
-            case 4: return 1.75f;
-            case 5: return 2f;
+            case 2: return 1.1f;
+            case 3: return 1.25f;
+            case 4: return 1.5f;
+            case 5: return 1.75f;
+            case 6: return 2f;
             default: return 0f;
         }
     }

@@ -19,10 +19,14 @@
         <item>Light</item>
         <item>High contrast dark</item>
         <item>High contrast light</item>
+        <item>Blue high contrast</item>
+        <item>Navy high contrast</item>
+        <item>Matrix green high contrast</item>
     </string-array>
     <string-array name="font_scale_options">
         <item>System text size</item>
         <item>100%</item>
+        <item>110%</item>
         <item>125%</item>
         <item>150%</item>
         <item>175%</item>

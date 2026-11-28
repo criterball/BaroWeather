@@ -84,6 +84,14 @@
 | 5 | Forecast-only scope | Done, no past samples so 3 h/12 h past trend stays neutral; 92-day history and place search remain Open-Meteo; background jobs remain Open-Meteo-only |
 | 6 | Version/APK bump | Done, v0.4.3 / versionCode 6, signed and device-verified |
 
+## v0.4.4 — complete
+
+| # | Feature | Status |
+| --- | --- | --- |
+| 1 | Android 15 / 16 KB page-size compatibility | Done, native `.so` files relinked with 16 KB `PT_LOAD`/RELRO alignment via NDK linker flags |
+| 2 | APK packaging alignment | Done, `zipalign -f -P 16 4` verified on the signed APK |
+| 3 | Version/APK bump | Done, v0.4.4 / versionCode 7, signed and regression-tested on the Android 10 tablet |
+
 ## Remaining / later
 
 | # | Feature | Notes |

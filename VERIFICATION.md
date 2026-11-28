@@ -1,6 +1,6 @@
 # BaroWeather verification record
 
-Date: 2026-11-28 (v0.4.3 added; earlier 2026-11-27 checks retained)
+Date: 2026-11-28 (v0.4.4 Android 15 / 16 KB compatibility fix added; earlier checks retained)
 
 ## Host checks
 
@@ -8,14 +8,15 @@ Date: 2026-11-28 (v0.4.3 added; earlier 2026-11-27 checks retained)
 | --- | --- |
 | `cargo test --offline` (core) | 15 passed, 0 failed |
 | Rust static libraries | arm64, armv7, x86_64 built with NDK 27.2.12479018 |
-| JNI `.so` files | 3 ABIs linked with NDK clang, no errors |
+| JNI `.so` files | 3 ABIs linked with NDK clang; all `LOAD` segments and RELRO end at 16 KB (`0x4000`) alignment |
+| `zipalign -c -P 16 4` | Passed on the final signed APK |
 | `aapt2 compile` / `link` | Passed, min SDK 21, target SDK 35 |
 | `javac` / `d8` | Passed, single `classes.dex` |
 | APK contents | `classes.dex` plus `lib/{arm64-v8a,armeabi-v7a,x86_64}/libbaroweather_core.so` |
 | `apksigner verify` | v1 true, v2 true, v3 true |
-| Build/version | v0.4.3, versionCode 6, output `dist\android\baroweather-0.4.3.apk` |
-| APK size | 4,906,198 bytes (v0.4.2 was 4,898,005 bytes) |
-| Final APK SHA-256 | `3994F7937277353C407E4D3752BA4D209835B924DD4F8AF13716213C292905DC` |
+| Build/version | v0.4.4, versionCode 7, output `dist\android\baroweather-0.4.4.apk` |
+| APK size | 4,906,197 bytes (v0.4.3 was 4,906,198 bytes) |
+| Final APK SHA-256 | `6470BA486BBBC1175E84A2DF3DB84460074D1CBEAF96C892766B982853D3648C` |
 | Backup source ZIP SHA-256 | `B386BDBDF1641AC5FFF27854F28D9C72FD3507DBC917D259A18CFABE5891F58E` |
 
 ## Device checks (Lenovo TB-X606F / `HPV2VPC2`, Android 10, 1200×1920)
@@ -36,7 +37,7 @@ Date: 2026-11-28 (v0.4.3 added; earlier 2026-11-27 checks retained)
 | Widget | `dumpsys package` lists `com.baroweather.app/.BaroWeatherWidget` with its provider metadata |
 | Widget/export provider | `dumpsys package` also lists `com.baroweather.app/.ExportFileProvider` |
 | Logcat | No FATAL EXCEPTION, ANR or AndroidRuntime crash during the full flow |
-| Installed version | `dumpsys package` reports versionName `0.4.2`, versionCode `5` |
+| Installed version | `dumpsys package` reports versionName `0.4.4`, versionCode `7` after the final regression install |
 
 ## Earlier v0.2/v0.3 checks retained
 
@@ -101,14 +102,29 @@ Date: 2026-11-28 (v0.4.3 added; earlier 2026-11-27 checks retained)
 | Logcat | No FATAL EXCEPTION, `ANR in com.baroweather.app` or AndroidRuntime crash during either provider path |
 | No secret | No API key or token in source, resources or APK; only an identifying User-Agent is sent |
 
+## v0.4.4 Android 15 / 16 KB compatibility checks
+
+| Check | Result |
+| --- | --- |
+| Reported failing device | Lenovo Idea Tab Pro `TB373FU`, identified as Android API 15 (Android 15) with a 16 KB-capable kernel; the tablet was not connected to this PC, so no direct logcat was available |
+| Root cause | v0.4.3 `.so` files had `PT_LOAD` alignment `0x1000` (4 KB); Android 15 devices with 16 KB pages can crash while loading such native libraries, causing the immediate app restart loop |
+| Fix | `build-native.ps1` now links with `-Wl,-z,max-page-size=16384 -Wl,-z,common-page-size=16384` and asserts every `LOAD` line is `0x4000` aligned |
+| ELF verification | `llvm-readelf -l -W` shows `0x4000` `LOAD` alignment for arm64, armv7 and x86_64; `GNU_RELRO` end addresses are 16 KB aligned |
+| APK packaging | `build-apk.ps1` now runs `zipalign -f -P 16 4`; `zipalign -c -P 16 4` passes on the signed APK |
+| Java fallback | Retained unchanged for unsupported ABIs or any native-load failure |
+| `cargo test --offline` (core) | Re-run after the change: 15 passed, 0 failed |
+| Regression smoke test | Final v0.4.4 installed on `HPV2VPC2`; `versionName=0.4.4`, `versionCode=7`; `MainActivity` stayed in the foreground with no FATAL EXCEPTION, ANR or `dlopen` error |
+| Not directly verified | The user's TB373FU was unavailable for a direct install; the fix is verified by ELF/APK alignment checks and the Android 10 regression device |
+
 ## Publication checks
 
 | Check | Result |
 | --- | --- |
-| Final backup | `D:\opencode_home_win\backups\BaroWeather\2026-11-28_v0.4.3_metno-fallback\` with source ZIP, signed APK and SHA-256 record |
+| Final backup | `D:\opencode_home_win\backups\BaroWeather\2026-11-28_v0.4.4_16kb-compat\` with source ZIP, signed APK and `SHA256.txt` record |
 | Local signing keystore | `android\debug.jks` excluded by `.gitignore`; not pushed |
 | Public repository | `https://github.com/criterball/BaroWeather` |
-| Push | Source, docs and signed v0.4.3 APK pushed to `main` |
+| Push | Source, docs and signed v0.4.4 APK pushed to `main` |
+| GitHub Release | `v0.4.4` created with `baroweather-0.4.4.apk` attached as a release asset, digest verified as `sha256:6470ba486bbb1175e84a2df3db84460074d1cbeaf96c892766b982853d3648c` |
 
 ## Notes
 

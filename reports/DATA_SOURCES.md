@@ -30,7 +30,7 @@ comparison signal. `surface_pressure` is displayed but not used for warnings.
 Endpoint: `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=...&lon=...`
 
 Used only when the foreground Open-Meteo dashboard fetch fails. It is keyless
-and sends an identifying User-Agent (`BaroWeather/0.4.3` plus the repository
+and sends an identifying User-Agent (`BaroWeather/0.4.4` plus the repository
 URL). The app reads `properties.timeseries[].data.instant.details.air_pressure_at_sea_level`,
 already in hPa, into the same `pressureMsl` signal used by the warning rules.
 `surface_pressure` remains display-only and is not filled by the fallback; the

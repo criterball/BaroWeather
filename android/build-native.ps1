@@ -31,12 +31,27 @@ foreach ($t in $targets) {
     New-Item -ItemType Directory -Path $outDir -Force | Out-Null
     $so = Join-Path $outDir 'libbaroweather_core.so'
 
+    # Android 15 devices can use 16 KB memory pages. NDK r27 defaults to 4 KB
+    # ELF alignment, which can crash native loads on those devices. Rebuild every
+    # .so with 16 KB LOAD/RELRO alignment; this remains valid on 4 KB devices.
     & (Join-Path $bin $t.Cc) `
         -shared -fPIC `
+        '-Wl,-z,max-page-size=16384' `
+        '-Wl,-z,common-page-size=16384' `
         -I $jniInclude `
         -o $so $jni $staticLib `
         -llog -lm -ldl
     if ($LASTEXITCODE -ne 0) { throw "clang link failed for $($t.Name)" }
+
+    $readelf = Join-Path $bin 'llvm-readelf.exe'
+    if (Test-Path $readelf) {
+        $loadLines = & $readelf -l -W $so | Select-String -Pattern '^\s*LOAD\s'
+        foreach ($line in $loadLines) {
+            if ($line.ToString() -notmatch '0x4000\s*$') {
+                throw "Native library is not 16 KB aligned: $so -> $line"
+            }
+        }
+    }
 
     Write-Host "  -> $so ($((Get-Item $so).Length) bytes)"
 }

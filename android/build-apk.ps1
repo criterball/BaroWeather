@@ -31,7 +31,7 @@ $flat = Join-Path $build 'compiled.flata'
 $baseApk = Join-Path $build 'base.apk'
 & $aapt2 compile --dir (Join-Path $project 'res') -o $flat
 if ($LASTEXITCODE -ne 0) { throw 'aapt2 compile failed' }
-& $aapt2 link -o $baseApk -I $androidJar --manifest (Join-Path $project 'AndroidManifest.xml') --java $gen --min-sdk-version 21 --target-sdk-version 35 --version-code 6 --version-name 0.4.3 $flat
+& $aapt2 link -o $baseApk -I $androidJar --manifest (Join-Path $project 'AndroidManifest.xml') --java $gen --min-sdk-version 21 --target-sdk-version 35 --version-code 7 --version-name 0.4.4 $flat
 if ($LASTEXITCODE -ne 0) { throw 'aapt2 link failed' }
 
 $sources = (Get-ChildItem (Join-Path $project 'src') -Recurse -Filter *.java).FullName
@@ -66,7 +66,8 @@ foreach ($abi in @('arm64-v8a', 'armeabi-v7a', 'x86_64')) {
 }
 
 $aligned = Join-Path $build 'aligned.apk'
-& (Join-Path $buildTools 'zipalign.exe') -p -f 4 $baseApk $aligned
+# 16 KB page-size alignment for native libraries; still valid on 4 KB devices.
+& (Join-Path $buildTools 'zipalign.exe') -f -P 16 4 $baseApk $aligned
 if ($LASTEXITCODE -ne 0) { throw 'zipalign failed' }
 
 $keystore = Join-Path $project 'debug.jks'
@@ -77,7 +78,7 @@ if (-not (Test-Path $keystore)) {
 
 $outDir = Join-Path $root 'dist\android'
 New-Item -ItemType Directory -Path $outDir -Force | Out-Null
-$apk = Join-Path $outDir 'baroweather-0.4.3.apk'
+$apk = Join-Path $outDir 'baroweather-0.4.4.apk'
 $apksigner = Join-Path $buildTools 'apksigner.bat'
 & $apksigner sign --ks $keystore --ks-pass pass:android --key-pass pass:android --v1-signing-enabled true --v2-signing-enabled true --v3-signing-enabled true --out $apk $aligned
 if ($LASTEXITCODE -ne 0) { throw 'apksigner failed' }

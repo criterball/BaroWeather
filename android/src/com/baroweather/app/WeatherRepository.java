@@ -28,9 +28,9 @@ public final class WeatherRepository {
     private static final String METNO_URL =
             "https://api.met.no/weatherapi/locationforecast/2.0/compact";
 
-    private static final String APP_UA = "BaroWeather/0.4.3 (sideloaded Android app)";
+    private static final String APP_UA = "BaroWeather/0.4.4 (sideloaded Android app)";
     // met.no requires an identifying name/version/URL User-Agent, not a generic Dalvik one.
-    private static final String METNO_UA = "BaroWeather/0.4.3 github.com/criterball/BaroWeather";
+    private static final String METNO_UA = "BaroWeather/0.4.4 github.com/criterball/BaroWeather";
     private static final long NORDIC_MIN_CACHE_MS = 30L * 60L * 1000L;
     private static final long GLOBAL_MIN_CACHE_MS = 3L * 60L * 60L * 1000L;
 

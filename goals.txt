@@ -62,6 +62,12 @@ ADDED IN v0.4.3
   samples are interpolated hourly, but past trend, long history and geocoding
   stay with Open-Meteo.
 
+ADDED IN v0.4.4
+---------------
+- 16 KB ELF and APK alignment for the native core so the app loads on Android 15
+  tablets with 16 KB memory pages, such as the Lenovo Idea Tab Pro (TB373FU).
+- Java fallback retained for unsupported ABIs or any native-load failure.
+
 OUT OF SCOPE FOR v0.1
 ---------------------
 - Medical diagnosis or treatment advice.

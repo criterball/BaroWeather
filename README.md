@@ -18,8 +18,9 @@ Project folder: `D:\opencode_home_win\038_2026_11_27_BaroWeather`
 ## Status
 
 Design pass: **complete**. v0.1–v0.3 code and APKs: **complete and device-smoke-tested**.
-v0.4.0 bonus set, v0.4.1 reading/rain refinements, v0.4.2 favorites page and
-v0.4.3 keyless MET Norway fallback: **complete and device-smoke-tested**.
+v0.4.0 bonus set, v0.4.1 reading/rain refinements, v0.4.2 favorites page,
+v0.4.3 keyless MET Norway fallback and v0.4.4 Android 15/16 KB compatibility:
+**complete and device-smoke-tested**.
 
 - v0.2 added the long-range pressure histogram and reading/visibility settings.
 - v0.3 added full landscape layouts and an explicit orientation setting.
@@ -33,6 +34,9 @@ v0.4.3 keyless MET Norway fallback: **complete and device-smoke-tested**.
 - v0.4.3 adds a keyless MET Norway Locationforecast fallback for current and
   hourly forecast pressure when Open-Meteo is unavailable, with source display
   and provider-aware caching.
+- v0.4.4 rebuilds the native core with 16 KB ELF and APK alignment so the app
+  loads correctly on Android 15 tablets that use 16 KB memory pages, such as the
+  Lenovo Idea Tab Pro (TB373FU).
 
 See `VERIFICATION.md` for the build and device results.
 
@@ -90,8 +94,9 @@ See `VERIFICATION.md` for the build and device results.
   primary for history, trends and geocoding. Background notification checks stay
   Open-Meteo-only while the app is inactive.
 - **Minimum Android:** API 21 (Android 5.0). Target/build: API 35. The native
-  library is built for arm64, armv7 and x86_64; the Java fallback covers any
-  missing ABI.
+  library is built for arm64, armv7 and x86_64 with 16 KB ELF alignment, so it
+  also works on Android 15 devices using 16 KB memory pages. The Java fallback
+  covers any missing ABI or native-load failure.
 
 ## Pressure warnings
 
@@ -145,8 +150,9 @@ dependencies):
 & 'D:\opencode_home_win\038_2026_11_27_BaroWeather\android\build-apk.ps1'
 ```
 
-Output: `dist\android\baroweather-0.4.3.apk` (versionCode 6). Earlier signed
-APKs are retained locally for the backup record. The local signing keystore
+Output: `dist\android\baroweather-0.4.4.apk` (versionCode 7). Earlier signed
+APKs are retained locally for the backup record. The build script verifies
+16 KB `.so` alignment and applies `zipalign -P 16`. The local signing keystore
 `android\debug.jks` is deliberately excluded from the public repository.
 
 The connected test device is `HPV2VPC2` (Lenovo TB-X606F, Android 10).
@@ -155,7 +161,8 @@ The connected test device is `HPV2VPC2` (Lenovo TB-X606F, Android 10).
 
 Public repository: `https://github.com/criterball/BaroWeather`.
 
-The keyless MET Norway pressure fallback is included in v0.4.3. Deferred to a
-later release: a full multi-provider replacement with comparable 92-day archive
-and geocoding, plus localisation into Spanish, French, German and Polish. Those
-are listed at the end of `FEATURE_BACKLOG.md`.
+The keyless MET Norway pressure fallback is included in v0.4.3; v0.4.4 adds the
+Android 15 / 16 KB page-size compatibility fix. Deferred to a later release: a
+full multi-provider replacement with comparable 92-day archive and geocoding,
+plus localisation into Spanish, French, German and Polish. Those are listed at
+the end of `FEATURE_BACKLOG.md`.
